@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url>
+	<loc>https://www.talbot-korean.com</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>1.0</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/image-6.jpg</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/image-6.webp</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<video:video>
+	<video:content_loc>https://www.talbot-korean.com/vid/Ed%20Stetzer%20Welcome.mp4</video:content_loc>
+	<video:title>Ed Stetzer Welcome</video:title>
+	</video:video>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/new/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/placeholder-user.png</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/placeholder-user.webp</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/event/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_event.png</image:loc>
+	<image:title>subhero news events 46934402837</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_event.webp</image:loc>
+	<image:title>subhero news events 46934402837</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/Event_01.png</image:loc>
+	<image:title>event01</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/Event_01.webp</image:loc>
+	<image:title>event01</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.jpg</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event_03.png</image:loc>
+	<image:title>KakaoTalk_Photo_2024 12 30 23 50 13</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event_03.webp</image:loc>
+	<image:title>KakaoTalk_Photo_2024 12 30 23 50 13</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/qna.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/qna.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/library/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_library.png</image:loc>
+	<image:title>header_library</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_library.webp</image:loc>
+	<image:title>header_library</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/db2.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/db2.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/KCI_logo.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/KCI_logo.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/biola_logo.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/biola_logo.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/dl_logo.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/dl_logo.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/mamdiv/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_MAMDIV.png</image:loc>
+	<image:title>header_MAMDIV</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/header_MAMDIV.webp</image:loc>
+	<image:title>header_MAMDIV</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/TalbotGraduateStudentHandbook.png</image:loc>
+	<image:title>TalbotGraduateStudentHandbook</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/TalbotGraduateStudentHandbook.webp</image:loc>
+	<image:title>TalbotGraduateStudentHandbook</image:title>
+	</image:image>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/etc/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/6fd484f06ac0c59f25ae89bed0b2ba16_large.jpg</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/6fd484f06ac0c59f25ae89bed0b2ba16_large.webp</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
+</url>
+<url>
+	<loc>https://www.talbot-korean.com/professor/</loc>
+	<lastmod>2025-01-01</lastmod>
+	<changefreq>Weekly</changefreq>
+	<priority>0.5</priority>
+</url>
+</urlset>
