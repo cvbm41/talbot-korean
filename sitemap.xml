@@ -270,6 +270,22 @@
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/stetzer.png</image:loc>
+	<image:title>6fd484f06ac0c59f25ae89bed0b2ba16_large</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/stetzer.webp</image:loc>
+	<image:title>6fd484f06ac0c59f25ae89bed0b2ba16_large</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/SIM.png</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/SIM.webp</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/person.png</image:loc>
 	<image:title>placeholder user</image:title>
 	</image:image>
