@@ -123,6 +123,22 @@
 	<image:loc>https://www.talbot-korean.com/img/dl_logo.webp</image:loc>
 	<image:title>placeholder image</image:title>
 	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_goodbook.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_goodbook.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/np_logo.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/np_logo.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/mamdiv/</loc>
