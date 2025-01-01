@@ -6,12 +6,60 @@
 	<changefreq>Weekly</changefreq>
 	<priority>1.0</priority>
 	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event01_bg.png</image:loc>
+	<image:title>slide 1</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event01_bg.webp</image:loc>
+	<image:title>slide 1</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event02_bg.png</image:loc>
+	<image:title>slide 2</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/event02_bg.webp</image:loc>
+	<image:title>slide 2</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/placeholder-image-wide.png</image:loc>
+	<image:title>slide 3</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/placeholder-image-wide.webp</image:loc>
+	<image:title>slide 3</image:title>
+	</image:image>
+	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/image-6.jpg</image:loc>
 	<image:title>image 6</image:title>
 	</image:image>
 	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/image-6.webp</image:loc>
 	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-biblical-integration-4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec.png</image:loc>
+	<image:title>icon biblical integration 4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-biblical-integration-4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec.webp</image:loc>
+	<image:title>icon biblical integration 4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-church-996625036252069c41b33d1ff0d4fddbc0a035fe6bc8eb2da2f32a104aad0515.png</image:loc>
+	<image:title>icon biblical integration 4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-church-996625036252069c41b33d1ff0d4fddbc0a035fe6bc8eb2da2f32a104aad0515.webp</image:loc>
+	<image:title>icon biblical integration 4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-global-health-640359f6c1bd6529c16aaf606751538e16643e86f4a947c567945e7236a35cbb.png</image:loc>
+	<image:title>icon global health 640359f6c1bd6529c16aaf606751538e16643e86f4a947c567945e7236a35cbb</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/icon-global-health-640359f6c1bd6529c16aaf606751538e16643e86f4a947c567945e7236a35cbb.webp</image:loc>
+	<image:title>icon global health 640359f6c1bd6529c16aaf606751538e16643e86f4a947c567945e7236a35cbb</image:title>
 	</image:image>
 	<video:video>
 	<video:content_loc>https://www.talbot-korean.com/vid/Ed%20Stetzer%20Welcome.mp4</video:content_loc>

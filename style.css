@@ -55,8 +55,31 @@ nav .dropdown-menu .nav-link{color:rgba(0,0,0,0.6)!important;} /* Maintain Downd
 .bloc-lg{
 	padding:100px 20px;
 }
+.bloc-md{
+	padding:50px 20px;
+}
 .bloc-sm{
 	padding:20px;
+}
+
+/* = Full Width Blocs 
+-------------------------------------------------------------- */
+
+.full-width-bloc{
+	padding-left:0;
+	padding-right:0;
+}
+.full-width-bloc .row{
+	margin-left:0;
+	margin-right:0;
+}
+.full-width-bloc .container{
+	width:100%;
+	max-width:100%!important;
+}
+.full-width-bloc .carousel img{
+	width:100%;
+	height:auto;
 }
 
 
@@ -279,6 +302,11 @@ button{
 	padding:14px;
 }
 
+/* = Text & Icon Styles
+-------------------------------------------------------------- */
+.lg-shadow{
+	text-shadow:0 2px 5px rgba(0,0,0,.5);
+}
 
 
 /* = Cards
@@ -331,6 +359,18 @@ button{
 }
 
 
+
+.carousel-nav-icon{
+	fill: none;
+	stroke: #fff;
+	stroke-width: 2px;
+	fill-rule: evenodd;
+	stroke-linecap:round;
+}
+
+.carousel-indicators li::marker{
+	font-size:0;
+}
 
 
 /* ScrollToTop button */
@@ -894,6 +934,39 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .p-58-style{
 	font-size:14px;
 }
+.img-22-style{
+	width:100px;
+}
+.img-4-style{
+	width:100px;
+}
+.img-5-style{
+	width:100px;
+}
+.img-6-style{
+	width:100px;
+}
+.p-16-style{
+	font-family:"Lato";
+	font-weight:700;
+	font-size:20px;
+}
+.link-탈봇의-신학-입장-style{
+	font-weight:bold;
+}
+.card-bloc-2-style{
+	width:100%;
+}
+.p-2-style{
+	font-size:50px;
+	font-family:"Lato";
+	font-weight:700;
+}
+.p-4-style{
+	font-family:"Lato";
+	font-weight:700;
+	font-size:30px;
+}
 
 /* = Colour
 -------------------------------------------------------------- */
@@ -917,7 +990,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	
 	--swatch-var-722:#EDF2FA;
 	
-	--swatch-var-3959:rgba(43,58,88,1.00);
+	--swatch-var-3959:rgba(0,0,0,0.00);
 	
 }
 
@@ -927,14 +1000,14 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .bgc-1880{
 	background-color:var(--swatch-var-1880);
 }
+.bgc-3959{
+	background-color:var(--swatch-var-3959);
+}
 .bgc-5846{
 	background-color:var(--swatch-var-5846);
 }
 .bgc-722{
 	background-color:var(--swatch-var-722);
-}
-.bgc-3959{
-	background-color:var(--swatch-var-3959);
 }
 .bgc-6368{
 	background-color:var(--swatch-var-6368);
@@ -948,11 +1021,11 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 
 /* Text colour styles */
 
-.tc-1522{
-	color:var(--swatch-var-1522)!important;
-}
 .tc-1274{
 	color:var(--swatch-var-1274)!important;
+}
+.tc-1522{
+	color:var(--swatch-var-1522)!important;
 }
 .tc-2869{
 	color:var(--swatch-var-2869)!important;
@@ -990,6 +1063,12 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 }
 .ltc-1274:hover{
 	color:#CCCCCC!important;
+}
+.ltc-2869{
+	color:var(--swatch-var-2869)!important;
+}
+.ltc-2869:hover{
+	color:#000000!important;
 }
 .ltc-5846{
 	color:var(--swatch-var-5846)!important;
@@ -1100,9 +1179,191 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	   height: 320px;
     }
 }
+
+@media (max-width: 991px){
+	.img-24-style{
+		width:100px;
+	}
+	.img-bloc-35-style{
+		width:100px;
+	}
+	.img-bloc-36-style{
+		width:100px;
+	}
+	.img-bloc-37-style{
+		width:100px;
+	}
+	.img-31-style{
+		width:100px;
+	}
+	.img-bloc-38-style{
+		width:100px;
+	}
+	.img-33-style{
+		width:100px;
+	}
+	.img-bloc-39-style{
+		width:100px;
+	}
+	.img-35-style{
+		width:100px;
+	}
+	.img-bloc-40-style{
+		width:100px;
+	}
+	.img-37-style{
+		width:100px;
+	}
+	.img-bloc-41-style{
+		width:100px;
+	}
+	.img-39-style{
+		width:100px;
+	}
+	.img-bloc-42-style{
+		width:100px;
+	}
+	.img-41-style{
+		width:100px;
+	}
+	.img-bloc-43-style{
+		width:100px;
+	}
+	.img-43-style{
+		width:100px;
+	}
+	.img-44-style{
+		width:100px;
+	}
+	.img-45-style{
+		width:100px;
+	}
+	.img-46-style{
+		width:100px;
+	}
+	.img-47-style{
+		width:100px;
+	}
+	.img-48-style{
+		width:100px;
+	}
+	.img-49-style{
+		width:100px;
+	}
+	.img-50-style{
+		width:100px;
+	}
+	.img-51-style{
+		width:100px;
+	}
+	.img-52-style{
+		width:100px;
+	}
+	.img-53-style{
+		width:100px;
+	}
+	.img-54-style{
+		width:100px;
+	}
+	.img-55-style{
+		width:100px;
+	}
+	
+}
+
 @media (max-width: 767px){
 	.quote-text{
 		font-size:22px;
+	}
+	.img-bloc-36-style{
+		width:100px;
+	}
+	.img-bloc-35-style{
+		width:100px;
+	}
+	.img-24-style{
+		width:100px;
+	}
+	.img-22-style{
+		width:100px;
+	}
+	.img-bloc-37-style{
+		width:100px;
+	}
+	.img-31-style{
+		width:100px;
+	}
+	.img-bloc-38-style{
+		width:100px;
+	}
+	.img-33-style{
+		width:100px;
+	}
+	.img-bloc-39-style{
+		width:100px;
+	}
+	.img-bloc-40-style{
+		width:100px;
+	}
+	.img-35-style{
+		width:100px;
+	}
+	.img-37-style{
+		width:100px;
+	}
+	.img-bloc-41-style{
+		width:100px;
+	}
+	.img-39-style{
+		width:100px;
+	}
+	.img-bloc-42-style{
+		width:100px;
+	}
+	.img-41-style{
+		width:100px;
+	}
+	.img-bloc-43-style{
+		width:100px;
+	}
+	.img-43-style{
+		width:100px;
+	}
+	.img-44-style{
+		width:100px;
+	}
+	.img-45-style{
+		width:100px;
+	}
+	.img-46-style{
+		width:100px;
+	}
+	.img-47-style{
+		width:100px;
+	}
+	.img-48-style{
+		width:100px;
+	}
+	.img-49-style{
+		width:100px;
+	}
+	.img-50-style{
+		width:100px;
+	}
+	.img-51-style{
+		width:100px;
+	}
+	.img-52-style{
+		width:100px;
+	}
+	.img-53-style{
+		width:100px;
+	}
+	.img-54-style{
+		width:100px;
+	}
+	.img-55-style{
+		width:100px;
 	}
 	
 }
@@ -1116,6 +1377,96 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	}
 	.quote-text{
 		font-size:18px;
+	}
+	.professor-image{
+	}
+	.img-bloc-37-style{
+		width:100px;
+	}
+	.img-bloc-36-style{
+		width:100px;
+	}
+	.img-24-style{
+		width:100px;
+	}
+	.img-bloc-35-style{
+		width:100px;
+	}
+	.img-31-style{
+		width:100px;
+	}
+	.img-bloc-38-style{
+		width:100px;
+	}
+	.img-33-style{
+		width:100px;
+	}
+	.img-bloc-39-style{
+		opacity:1.0;
+		width:100px;
+	}
+	.img-35-style{
+		width:100px;
+	}
+	.img-bloc-40-style{
+		width:100px;
+	}
+	.img-37-style{
+		width:100px;
+	}
+	.img-bloc-41-style{
+		width:100px;
+	}
+	.img-39-style{
+		width:100px;
+	}
+	.img-bloc-42-style{
+		width:100px;
+	}
+	.img-41-style{
+		width:100px;
+	}
+	.img-bloc-43-style{
+		width:100px;
+	}
+	.img-43-style{
+		width:100px;
+	}
+	.img-44-style{
+		width:100px;
+	}
+	.img-45-style{
+		width:100px;
+	}
+	.img-46-style{
+		width:100px;
+	}
+	.img-47-style{
+		width:100px;
+	}
+	.img-48-style{
+		width:100px;
+	}
+	.img-49-style{
+		width:100px;
+	}
+	.img-50-style{
+		width:100px;
+	}
+	.img-51-style{
+		width:100px;
+	}
+	.img-52-style{
+		width:100px;
+	}
+	.img-53-style{
+		width:100px;
+	}
+	.img-54-style{
+		width:100px;
+	}
+	.img-55-style{
+		width:100px;
 	}
 	
 }
