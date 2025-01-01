@@ -302,11 +302,6 @@ button{
 	padding:14px;
 }
 
-/* = Text & Icon Styles
--------------------------------------------------------------- */
-.lg-shadow{
-	text-shadow:0 2px 5px rgba(0,0,0,.5);
-}
 
 
 /* = Cards
@@ -702,7 +697,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	width:59.33%;
 }
 .p-bloc-9-style{
-	font-size:14px;
+	font-size:15px;
 }
 .img-bloc-9-style{
 	border-radius:0px 0px 0px 0px;
@@ -723,10 +718,10 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	width:100%;
 }
 .img-np-lo-style{
-	border-radius:27px 27px 27px 27px;
+	border-radius:0px 0px 0px 0px;
 }
 .img-19-style{
-	border-radius:23px 23px 23px 23px;
+	border-radius:0px 0px 0px 0px;
 }
 .p-54-style{
 	font-size:14px;
@@ -904,13 +899,13 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-size:24px;
 }
 .img-event-style{
-	width:526px;
+	width:349px;
 }
 .img-bloc-11-style{
 	width:211px;
 }
 .img-8-style{
-	width:526px;
+	width:350px;
 }
 .img-24-style{
 	width:118px;
@@ -954,18 +949,60 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .link-탈봇의-신학-입장-style{
 	font-weight:bold;
 }
-.card-bloc-2-style{
-	width:100%;
-}
-.p-2-style{
-	font-size:50px;
-	font-family:"Lato";
-	font-weight:700;
-}
 .p-4-style{
 	font-family:"Lato";
 	font-weight:700;
-	font-size:30px;
+	font-size:25px;
+}
+.divider-0-background-color{
+	background-color:var(--swatch-var-6368);
+}
+.carousel-style{
+	width:100%;
+}
+.p-6-style{
+	font-size:25px;
+}
+.p-7-style{
+	font-size:15px;
+}
+.p-5-style{
+	font-size:15px;
+}
+.p-bloc-37-style{
+	width:100%;
+}
+.p-144-style{
+	font-size:20px;
+}
+.img-4073c443e24-style{
+	width:350px;
+}
+.img-bloc-23-style{
+	width:350px;
+}
+.card-26-style{
+	width:100%;
+}
+.divider-350-style{
+	width:50px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.divider-5911-style{
+	width:50px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.divider-38697-style{
+	width:50px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.divider-43326-style{
+	width:50px;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 /* = Colour
@@ -1000,14 +1037,14 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .bgc-1880{
 	background-color:var(--swatch-var-1880);
 }
-.bgc-3959{
-	background-color:var(--swatch-var-3959);
-}
 .bgc-5846{
 	background-color:var(--swatch-var-5846);
 }
 .bgc-722{
 	background-color:var(--swatch-var-722);
+}
+.bgc-3959{
+	background-color:var(--swatch-var-3959);
 }
 .bgc-6368{
 	background-color:var(--swatch-var-6368);
@@ -1021,11 +1058,11 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 
 /* Text colour styles */
 
-.tc-1274{
-	color:var(--swatch-var-1274)!important;
-}
 .tc-1522{
 	color:var(--swatch-var-1522)!important;
+}
+.tc-1274{
+	color:var(--swatch-var-1274)!important;
 }
 .tc-2869{
 	color:var(--swatch-var-2869)!important;
@@ -1268,6 +1305,17 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	.img-55-style{
 		width:100px;
 	}
+	.divider-style{
+	}
+	.divider-0-style{
+	}
+	.divider-0-background-color{
+		background-color:var(--swatch-var-6368);
+	}
+	.card-body-style{
+		height:550px;
+		width:100%;
+	}
 	
 }
 
@@ -1364,9 +1412,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	}
 	.img-55-style{
 		width:100px;
-	}
-	.p-2-style{
-		font-size:30px;
 	}
 	.p-5-style{
 		font-size:10px;
@@ -1475,9 +1520,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 		width:100px;
 	}
 	.p-5-style{
-		font-size:10px;
-	}
-	.p-2-style{
 		font-size:10px;
 	}
 	

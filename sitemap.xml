@@ -22,11 +22,11 @@
 	<image:title>slide 2</image:title>
 	</image:image>
 	<image:image>
-	<image:loc>https://www.talbot-korean.com/img/placeholder-image-wide.png</image:loc>
+	<image:loc>https://www.talbot-korean.com/img/event03_bg.png</image:loc>
 	<image:title>slide 3</image:title>
 	</image:image>
 	<image:image>
-	<image:loc>https://www.talbot-korean.com/img/placeholder-image-wide.webp</image:loc>
+	<image:loc>https://www.talbot-korean.com/img/event03_bg.webp</image:loc>
 	<image:title>slide 3</image:title>
 	</image:image>
 	<image:image>
@@ -102,20 +102,20 @@
 	<image:title>event01</image:title>
 	</image:image>
 	<image:image>
-	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.jpg</image:loc>
-	<image:title>placeholder image</image:title>
-	</image:image>
-	<image:image>
-	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.webp</image:loc>
-	<image:title>placeholder image</image:title>
-	</image:image>
-	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/event_03.png</image:loc>
 	<image:title>KakaoTalk_Photo_2024 12 30 23 50 13</image:title>
 	</image:image>
 	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/event_03.webp</image:loc>
 	<image:title>KakaoTalk_Photo_2024 12 30 23 50 13</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.jpg</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/4073c443e24c5.webp</image:loc>
+	<image:title>placeholder image</image:title>
 	</image:image>
 	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/qna.png</image:loc>
@@ -180,6 +180,38 @@
 	<image:title>placeholder image</image:title>
 	</image:image>
 	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_20th.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_20th.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_JSF.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_JSF.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_CEJ.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_CEJ.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_TB.png</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/library_TB.webp</image:loc>
+	<image:title>placeholder image</image:title>
+	</image:image>
+	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/np_logo.png</image:loc>
 	<image:title>placeholder image</image:title>
 	</image:image>
@@ -229,5 +261,13 @@
 	<lastmod>2025-01-01</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/person.png</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/person.webp</image:loc>
+	<image:title>placeholder user</image:title>
+	</image:image>
 </url>
 </urlset>
