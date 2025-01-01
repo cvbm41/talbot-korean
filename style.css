@@ -1365,6 +1365,12 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	.img-55-style{
 		width:100px;
 	}
+	.p-2-style{
+		font-size:30px;
+	}
+	.p-5-style{
+		font-size:10px;
+	}
 	
 }
 
@@ -1467,6 +1473,12 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	}
 	.img-55-style{
 		width:100px;
+	}
+	.p-5-style{
+		font-size:10px;
+	}
+	.p-2-style{
+		font-size:10px;
 	}
 	
 }
