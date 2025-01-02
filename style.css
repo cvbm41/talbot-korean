@@ -905,7 +905,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	width:350px;
 }
 .img-24-style{
-	width:118px;
+	width:110px;
 }
 .img-bloc-35-style{
 	width:122px;
@@ -927,7 +927,8 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-size:14px;
 }
 .img-22-style{
-	width:122px;
+	width:110px;
+	height:110px;
 }
 .img-4-style{
 	width:100px;
@@ -1008,7 +1009,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-size:14px;
 }
 .p-bloc-40-style{
-	font-size:11px;
+	font-size:13px;
 }
 .p-bloc-41-style{
 	font-size:15px;
@@ -1017,7 +1018,7 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-size:15px;
 }
 .img-bloc-49-style{
-	width:100px;
+	width:110px;
 }
 .img-mark-saucy-style{
 	width:100px;
@@ -1029,29 +1030,29 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	width:100px;
 }
 .img-gary-comer-style{
-	width:100px;
+	width:110px;
 }
 .img-scott-smith2-style{
-	width:100px;
+	width:110px;
 }
 .img-kenneth-c-style{
 	width:100px;
 	height:100px;
 }
 .img-john-s-style{
-	width:100px;
+	width:110px;
 }
 .img-eric-a2-style{
-	width:100px;
+	width:110px;
 }
 .img-bloc-47-style{
-	width:100px;
+	width:110px;
 }
 .p-bloc-49-style{
 	font-size:14px;
 }
 .img-bloc-44-style{
-	width:100px;
+	width:110px;
 }
 
 /* = Colour
@@ -1352,6 +1353,31 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	}
 	.p-58-style{
 		font-size:15px;
+	}
+	.img-22-style{
+		width:100px;
+		height:100px;
+	}
+	.img-eric-a2-style{
+		width:100px;
+	}
+	.img-bloc-44-style{
+		width:100px;
+	}
+	.img-scott-smith2-style{
+		width:100px;
+	}
+	.img-john-s-style{
+		width:100px;
+	}
+	.img-gary-comer-style{
+		width:100px;
+	}
+	.img-bloc-47-style{
+		width:100px;
+	}
+	.img-bloc-49-style{
+		width:100px;
 	}
 	
 }
