@@ -572,9 +572,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .nav-box:hover{
 	background-color:var(--swatch-var-6368);
 }
-.p-style{
-	font-size:18px;
-}
 .quote-thumb{
 	max-width:100px;
 	width:100px;
@@ -1072,6 +1069,12 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	font-family:"Lato";
 	font-weight:700;
 	font-size:20px;
+}
+.link-탈봇-홈-style{
+	text-decoration:none;
+}
+.link-바이올라-홈-style{
+	text-decoration:none;
 }
 
 /* = Colour
