@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url>
 	<loc>https://www.talbot-korean.com</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>1.0</priority>
 	<image:image>
@@ -38,6 +38,14 @@
 	<image:title>image 6</image:title>
 	</image:image>
 	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/eddie-byun.jpg</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
+	<image:loc>https://www.talbot-korean.com/img/eddie-byun.webp</image:loc>
+	<image:title>image 6</image:title>
+	</image:image>
+	<image:image>
 	<image:loc>https://www.talbot-korean.com/img/icon-biblical-integration-4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec.png</image:loc>
 	<image:title>icon biblical integration 4dbf45670e0eb6b0ad78f953ae135560fb267c64b0c9f0e27b9dce39bc32b2ec</image:title>
 	</image:image>
@@ -68,7 +76,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/new/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -82,7 +90,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/event/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -128,7 +136,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/library/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -222,7 +230,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/mamdiv/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -244,7 +252,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/etc/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -266,7 +274,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/professor/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -376,7 +384,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/dmin/</loc>
-	<lastmod>2025-01-02</lastmod>
+	<lastmod>2025-01-03</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
