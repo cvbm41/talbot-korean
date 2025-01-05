@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url>
 	<loc>https://www.talbot-korean.com</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>1.0</priority>
 	<image:image>
@@ -76,7 +76,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/new/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -90,7 +90,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/event/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -136,7 +136,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/library/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -230,7 +230,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/mamdiv/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -252,7 +252,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/etc/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -274,7 +274,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/professor/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
@@ -376,7 +376,7 @@
 </url>
 <url>
 	<loc>https://www.talbot-korean.com/dmin/</loc>
-	<lastmod>2025-01-03</lastmod>
+	<lastmod>2025-01-05</lastmod>
 	<changefreq>Weekly</changefreq>
 	<priority>0.5</priority>
 	<image:image>
