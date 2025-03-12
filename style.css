@@ -334,7 +334,7 @@ button{
 .blocs-horizontal-scroll-area{
 	display:flex;
 	overflow-x:auto;
-	align-items:flex-start;
+	/* align-items:flex-start; */
 	gap:20px;
 }
 .blocs-horizontal-scroll-area > *{
