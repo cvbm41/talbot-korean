@@ -21,7 +21,18 @@
   <meta name="robots" content="index, follow">
   <link rel="shortcut icon" type="image/png" href="favicon.png">
 
-  <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css?5382">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css?5382"> -->
   <link rel="stylesheet" type="text/css" href="style.css?4516">
   <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,40&display=swap&subset=latin,latin-ext'
     rel='stylesheet' type='text/css'>
@@ -86,7 +97,50 @@
 
     .dropdown-item {
       display: block;
-      width: 350px;
+      width: 300px;
+    }
+
+    .input-group-text {
+      background-color: transparent !important;
+    }
+  </style>
+  <!-- 쇼츠 무빙 -->
+  <style>
+    .carousel {
+      margin: 0 auto;
+      padding: 20px 0;
+      max-width: 700px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .carousel>* {
+      flex: 0 0 100%;
+    }
+
+    /* 그룹 안의 카드들을 한 줄로 배치 */
+    .group {
+      display: flex;
+      gap: 20px;
+      padding-right: 20px;
+      will-change: transform;
+      animation: scrolling 40s linear infinite;
+    }
+
+    /* 스크롤 애니메이션 */
+    @keyframes scrolling {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* hover 시 애니메이션 일시정지 */
+    .carousel:hover .group {
+      animation-play-state: paused;
     }
   </style>
 
@@ -94,23 +148,21 @@
 
 <body>
 
+
   <!-- Preloader -->
   <div id="page-loading-blocs-notifaction" class="page-preloader"></div>
   <!-- Preloader END -->
 
-
   <!-- Main container -->
   <div class="page-container">
 
-
-
     <!-- 안내 -->
     <div class="bloc bgc-6419 d-bloc" id="bloc-1">
-      
+
       <div class="container bloc-sm-lg bloc-md-md bloc-md-sm bloc-sm">
         <div class="row d-flex flex-column align-items-center text-center">
 
-          
+
           <div class="" style="width: 70%;">
             <picture>
               <source type="image/webp"><img src="img/main_logo.png" data-src="img/main_logo.png"
@@ -132,7 +184,7 @@
           </div>
 
           <div class="text-start ">
-  
+
             <div class="text-center mt-lg-4">
               <a href="https://www.biola.edu/talbot-korean" class="btn btn-danger" target="_blank">공식&nbsp;홈페이지<br><span
                   class="fw-light">입학문의 및 모집요강</span> </a>
@@ -141,29 +193,44 @@
             <div class="text-center mt-4">
               <a href="https://www.youtube.com/watch?v=m8gnGtjsMRg" class="text-white mt-3" id="sample-link"
                 target="_blank">강의 샘플</a> &nbsp; &nbsp;
-              <a href="#" class="text-white mt-3" id="cafe-link">네이버 카페</a> &nbsp; &nbsp;
+              <a href="https://www.youtube.com/@탈봇신학대학원한국어" class="text-white mt-3" id="youtube-link" target="_blank">공식
+                Youtube</a> &nbsp; &nbsp;
+              <!-- <a href="#" class="text-white mt-3" id="cafe-link">네이버 카페</a> &nbsp; &nbsp; -->
 
               <a href="#bloc-5" class="text-white mt-3"> 브로셔 다운로드</a>
 
               <!-- 카드뉴스 -->
-              <div class="dropdown mt-4">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <!-- Scrolling Ticker in Dropdown Button -->
-                    <div class="ticker-container">
-                        <div class="ticker-wrapper" id="scrolling-headline">
-                            <!-- Dynamic ticker items will be inserted here -->
-                        </div>
+              <div class="dropdown d-flex justify-content-center mt-4">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="ticker-container">
+                    <span class="input-group-text" id="basic-addon1">이벤트</span>
+                    <div class="ticker-wrapper" id="scrolling-headline">
+                      <!-- 헤드라인 -->
+                      <div class="ticker">loading...</div>
                     </div>
+                  </div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="scrolling-headline-dropdown">
-                    <!-- Dynamic dropdown list items will be inserted here -->
+                  <!-- 카드 뉴스 리스트 -->
                 </ul>
-            </div>
+              </div>
 
             </div>
 
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bgc-6419" id="youtube-short-list">
+      <div class="carousel ">
+        <div class="group" id="carousel-group-1">
+          <!-- 동적으로 생성될 카드들 -->
+        </div>
+        <!-- 스크린 리더를 위해 중복 그룹 (aria-hidden) -->
+        <div class="group" aria-hidden="true" id="carousel-group-2">
+          <!-- 동적으로 생성될 카드들 복제 -->
         </div>
       </div>
     </div>
@@ -221,7 +288,7 @@
     <!-- bloc-5 END -->
 
     <!-- 구분선 -->
-    <div class="bgc-6419">
+    <div class="bgc-6419" id="card-news-line">
       <div class="row">
         <div class="col-12 d-flex justify-content-center my-5">
           <hr style="border: 1px solid red; width: 50%; margin-left: 5%; margin-right: 5%;">
@@ -231,7 +298,7 @@
 
     <!-- bloc-3 -->
     <div class="bloc bgc-6419 d-bloc" id="bloc-3">
-      <div class="container bloc-sm-lg bloc-sm-md bloc-sm-sm bloc-sm">
+      <div class="container bloc-sm-lg bloc-sm-md bloc-sm-sm bloc-sm" id="news-bloc">
         <div class="row">
           <div class="col-md-4">
             <p class="mg-md text-sm-start fs-5 ">
@@ -283,15 +350,20 @@
 
 
     <!-- bloc-4 -->
+    <!-- <h3 class="mg-md text-center tc-7343">
+      미디어 (Media)<br>
+      <a href="https://www.youtube.com/@%ED%83%88%EB%B4%87%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EC%9B%90%ED%95%9C%EA%B5%AD%EC%96%B4"
+        class="fs-6" target="_blank" id="cafe-link">한국어 온라인 공식 유투브</a>
+    </h3> -->
+
+
+
+    <!-- 
     <div class="bloc l-bloc " id="bloc-4">
       <div class="container bloc-xl bloc-md-lg">
         <div class="row">
           <div class="col-lg-12 mb-3">
-            <h3 class="mg-md text-center tc-7343">
-              미디어 (Media)<br>
-              <a href="https://www.youtube.com/@%ED%83%88%EB%B4%87%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EC%9B%90%ED%95%9C%EA%B5%AD%EC%96%B4"
-                class="fs-6" target="_blank" id="cafe-link">한국어 온라인 공식 유투브</a>
-            </h3>
+            
             <p class="text-center object-hidden">
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&nbsp;
             </p>
@@ -304,7 +376,7 @@
                   </svg></span>
               </div>
               <div class="blocs-horizontal-scroll-area" id="semester-list">
-                <!-- 동적으로 여기에 카드들이 추가될 예정 -->
+          
               </div>
               <div class="blocs-horizontal-scroll-control blocs-scroll-control-next">
                 <span class="blocs-round-btn"><svg width="26" height="26" viewBox="0 0 32 32">
@@ -315,7 +387,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- bloc-4 END -->
 
     <!-- bloc-1 -->
@@ -365,113 +437,102 @@
 
 
   <!-- Additional JS -->
-  <script src="./js/bootstrap.bundle.min.js?3307"></script>
+  <!-- <script src="./js/bootstrap.bundle.min.js?3307"></script> -->
   <script src="./js/blocs.min.js?6868"></script>
-  <script src="./js/lazysizes.min.js" defer></script><!-- Additional JS END -->
+  <script src="./js/lazysizes.min.js" defer></script>
+  <!-- Additional JS END -->
 
 
 </body>
 
-<!-- Remixicon Icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-  </script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
 
 <script>
 
+  $(document).ready(function () {
+    let globalNewscount = 0; // 전역 변수로 선언
+    let globalNewstotalItems = 0;
 
-        let globalNewscount = 0; // 전역 변수로 선언
-        let globalNewstotalItems = 0;
+    function truncateText(text, maxLength = 20) {
+      return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+    }
 
-        function truncateText(text, maxLength = 20) {
-            return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
-        }
+    function startScrolling() {
+      const $tickerWrapper = $("#scrolling-headline");
+      const tickerItems = $tickerWrapper.children();
+      globalNewstotalItems = tickerItems.length;
 
-        function startScrolling() {
-            const $tickerWrapper = $("#scrolling-headline");
-            const tickerItems = $tickerWrapper.children();
-            globalNewstotalItems = tickerItems.length;
+      if (globalNewstotalItems === 0) return; // 항목이 없으면 실행하지 않음
 
-            if (globalNewstotalItems === 0) return; // 항목이 없으면 실행하지 않음
+      setInterval(function () {
+        globalNewscount++;
 
-            setInterval(function () {
-              globalNewscount++;
+        // 스크롤 애니메이션 적용
+        $tickerWrapper.css({
+          "transition": "transform 0.5s ease-in-out",
+          "transform": `translateY(${-30 * globalNewscount}px)`
+        });
 
-                // 스크롤 애니메이션 적용
-                $tickerWrapper.css({
-                    "transition": "transform 0.5s ease-in-out",
-                    "transform": `translateY(${-30 * globalNewscount}px)`
-                });
-
-                // 마지막 요소까지 스크롤한 경우, 초기화
-                if (globalNewscount >= globalNewstotalItems) {
-                    setTimeout(() => {
-                        $tickerWrapper.css({
-                            "transition": "none",
-                            "transform": "translateY(0)"
-                        });
-                        globalNewscount = 0; // 다시 처음으로
-                    }, 100); // 애니메이션이 끝난 후 즉시 초기화
-                }
-            }, 2000); // 2초마다 실행
-        }
-
-        // 데이터를 불러온 후 스크롤 시작
-        function fetchMySemester() {
-            organizationId = '2'
-            const apiUrl = 'https://250204.aisystem64.org/api/articles/posts/' + '?organization=' + organizationId + '&is_public=1';
-           
-            $.ajax({
-                url: apiUrl,
-                method: "GET",
-                dataType: 'json',
-                success: function (response) {
-                    updateMySemester(response.results);
-                    console.log(response.results);
-                    startScrolling(); // 데이터 업데이트 후 스크롤 시작
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error fetching data: ", textStatus, errorThrown);
-                    $('#semester-list').html('<p>Error loading data. Please try again.</p>');
-                }
+        // 마지막 요소까지 스크롤한 경우, 초기화
+        if (globalNewscount >= globalNewstotalItems) {
+          setTimeout(() => {
+            $tickerWrapper.css({
+              "transition": "none",
+              "transform": "translateY(0)"
             });
+            globalNewscount = 0; // 다시 처음으로
+          }, 100); // 애니메이션이 끝난 후 즉시 초기화
         }
+      }, 2000); // 2초마다 실행
+    }
 
-        function updateMySemester(posts) {
-            if (!Array.isArray(posts) || posts.length === 0) {
-                $('#scrolling-headline').html('<p>No data available.</p>');
-                $('#scrolling-headline-dropdown').html('<li>No data available.</li>');
-            } else {
-                const topPosts = posts.slice(0, 4);
+    // 데이터를 불러온 후 스크롤 시작
+    function fetchCardNews() {
+      organizationId = '2'
+      const apiUrl = 'https://250204.aisystem64.org/api/articles/posts/' + '?organization=' + organizationId + '&is_public=1';
 
-                // Ticker Content
-                const tickerHTML = topPosts.map(post => {
-                    return `<div class="ticker">${truncateText(post.title)}</div>`;
-                }).join("");
-
-                // Dropdown List Content
-                const dropdownHTML = topPosts.map(post => {
-                    return `<li><a class="dropdown-item" href="${post.absolute_url}">${truncateText(post.title)}</a></li>`;
-                }).join("");
-
-                $('#scrolling-headline').html(tickerHTML);
-                $('#scrolling-headline-dropdown').html(dropdownHTML);
-            }
+      $.ajax({
+        url: apiUrl,
+        method: "GET",
+        dataType: 'json',
+        success: function (response) {
+          updateCardNews(response.results);
+          console.log(response.results);
+          startScrolling(); // 데이터 업데이트 후 스크롤 시작
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error("Error fetching data: ", textStatus, errorThrown);
+          $('#cardnews-list').html('<p>Error loading data. Please try again.</p>');
         }
+      });
+    }
 
-        fetchMySemester();
-   
+    function updateCardNews(posts) {
+      if (!Array.isArray(posts) || posts.length === 0) {
+        $('#scrolling-headline').html('<p>No data available.</p>');
+        $('#scrolling-headline-dropdown').html('<li>No data available.</li>');
+      } else {
+        const topPosts = posts.slice(0, 4);
+
+        // Ticker Content
+        const tickerHTML = topPosts.map(post => {
+          return `<div class="ticker">${truncateText(post.title)}</div>`;
+        }).join("");
+
+        // Dropdown List Content ${post.absolute_url}
+        const dropdownHTML = topPosts.map(post => {
+          return `<li><a class="dropdown-item" href="#card-news-line">${truncateText(post.title)}</a></li>`;
+        }).join("");
+
+        $('#scrolling-headline').html(tickerHTML);
+        $('#scrolling-headline-dropdown').html(dropdownHTML);
+      }
+    }
+
+    fetchCardNews();
+  });
 
 
-  function fetchMySemester() {
+  function fetchYoutubeShort() {
 
     const apiUrl = 'https://250204.aisystem64.org/api/articles/send_youtube_short/';
 
@@ -480,55 +541,67 @@
       method: "GET",
       dataType: 'json',
       success: function (response) {
-        updateMySemester(response.results);
+        updateYoutubeShort(response.results);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error("Error fetching data: ", textStatus, errorThrown);
-        $('#semester-list').html('<p>Error loading data. Please try again.</p>');
+        $('#youtube-short-list').html('<p>Error loading data. Please try again.</p>');
       }
     });
   }
 
-  function updateMySemester(youtube_shorts) {
+  function updateYoutubeShort(youtube_shorts) {
     if (!Array.isArray(youtube_shorts) || youtube_shorts.length === 0) {
-      $('#semester-list').html('<p>No data available.</p>');
+      $('#youtube-short-list').html('<p>No data available.</p>');
     } else {
-      const listGroupHTML = youtube_shorts.map(youtube_short => {
-        // video_tag를 ' ' (공백)을 기준으로 나누고, 각 태그 앞에 #을 포함하여 badge로 변환
+      // 카드 하나하나 생성 (카드 스타일은 기존과 동일)
+      const cardsHTML = youtube_shorts.map(youtube_short => {
+        // video_tag를 공백 기준으로 분리 후 badge 처리
         const videoTags = youtube_short.video_tag.split(" ").map(tag => {
           return `<span class="badge text-bg-secondary">${tag}</span>`;
         }).join(" ");
+        // <p class="card-text text-secondary opacity-75 flex-grow-1">${videoTags}</p>  <div style="border-top: 1px solid #dee2e6; width: 87%; margin: auto;"></div> <small class="text-body-secondary p-3">${youtube_short.video_title}</small>
 
         return `
-         <div class="p-2" style="flex: 1;">
-          <div class="card h-100 border-0 d-flex flex-column rounded-4"
-              style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); width: 120%; me-3">
-              <div class="card-img-container" style="position: relative; width: 100%; height: 0; padding-top: 180%; overflow: hidden;">
-              <img src="${youtube_short.thumbnail_url}" class="card-img-top" alt="..."
-                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"/>
-              </div>
-              <div class="card-body d-flex flex-column" style="flex-grow: 1;">
-              <p class="card-text text-secondary opacity-75 flex-grow-1">${videoTags}</p>
-              <div class="d-flex justify-content-between align-items-center mt-auto">
-                  <a href="${youtube_short.video_url}" class="btn btn-danger btn-sm d-flex justify-content-center align-items-center"
-                  target="_blank" style="width: 35px; height: 35px; border-radius: 8px;">
-                  <i class="ri-play-large-fill"></i>
-                  </a>
-              </div>
-              </div>
-              <div style="border-top: 1px solid #dee2e6; width: 87%; margin-left: auto; margin-right: auto;"></div>
-              <small class="text-body-secondary p-3">${youtube_short.video_title}</small>
+      <div class="p-2" style="flex: 1;">
+        <div class="card h-100 border-0 d-flex flex-column rounded-4"
+            style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); width: 120%; me-3">
+          <div class="card-img-container" style="position: relative; width: 100%; height: 0; padding-top: 180%; overflow: hidden;">
+            <img src="${youtube_short.thumbnail_url}" class="card-img-top" alt="Thumbnail"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"/>
           </div>
+          <div class="card-body bg-dark  d-flex align-items-center flex-column " style="flex-grow: 1; border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;">
+            <div class="d-flex align-items-center mt-auto" >
+              <a href="${youtube_short.video_url}" class="btn btn-dark  d-flex justify-content-center align-items-center"
+                target="_blank" style="width: 50px; height: 50px; border-radius: 8px;">
+                <i class="fs-6 ri-play-large-fill"></i>
+              </a>
+            </div>
+          </div>
+         
         </div>
-
-        `;
+      </div>
+      `;
       }).join("");
 
-      $('#semester-list').html(listGroupHTML);
+      // 두 그룹 모두 같은 카드들을 포함하도록 구성
+      const carouselHTML = `
+      <div class="carousel">
+        <div class="group" id="carousel-group-1">
+          ${cardsHTML}
+        </div>
+        <div class="group" aria-hidden="true" id="carousel-group-2">
+          ${cardsHTML}
+        </div>
+      </div>
+    `;
+
+      $('#youtube-short-list').html(carouselHTML);
     }
   }
 
-  fetchMySemester();
+  fetchYoutubeShort();
 
 
 
