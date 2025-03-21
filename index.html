@@ -176,7 +176,7 @@
   <div class="page-container">
 
     <!-- 안내 -->
-    <div class="bloc bgc-6419 d-bloc" id="bloc-1">
+    <div class="bloc bgc-6419 d-bloc" id="bloc-1" style="background-image: url('img/02.png'); background-size: cover; background-position: center;">
 
       <div class="container bloc-sm-lg bloc-md-md bloc-md-sm bloc-sm">
         <div class="row d-flex flex-column align-items-center text-center">
@@ -184,8 +184,8 @@
 
           <div class="" style="width: 70%;">
             <picture>
-              <source type="image/webp"><img src="img/main_logo.png" data-src="img/main_logo.png"
-                class="img-fluid mx-auto d-block lazyload" width="775" height="194">
+              <source type="image/webp"><img src="img/main_logo.svg" data-src="img/main_logo.svg"
+                class="img-fluid mx-auto d-block lazyload" width="300" height="100">
             </picture>
             <h1 class="mb-4 text-lg-center h1-style">
               탈봇 신학 대학원&nbsp;<span class="fw-light">온라인 한국어</span>
@@ -241,24 +241,27 @@
 
           </div>
         </div>
+
+      <div class="" id="youtube-short-list" style="height: 300px;">
+        <div class="carousel ">
+          <div class="group" id="carousel-group-1">
+            <!-- 동적으로 생성될 카드들 -->
+          </div>
+          <!-- 스크린 리더를 위해 중복 그룹 (aria-hidden) -->
+          <div class="group" aria-hidden="true" id="carousel-group-2">
+            <!-- 동적으로 생성될 카드들 복제 -->
+          </div>
+        </div>
+      </div>
+      
       </div>
     </div>
 
-    <div class="bgc-6419" id="youtube-short-list">
-      <div class="carousel ">
-        <div class="group" id="carousel-group-1">
-          <!-- 동적으로 생성될 카드들 -->
-        </div>
-        <!-- 스크린 리더를 위해 중복 그룹 (aria-hidden) -->
-        <div class="group" aria-hidden="true" id="carousel-group-2">
-          <!-- 동적으로 생성될 카드들 복제 -->
-        </div>
-      </div>
-    </div>
+
 
 
     <!-- 구분선 -->
-    <div class="bgc-6419">
+    <div class="bgc-6419" >
       <div class="row">
         <div class="col-12 d-flex justify-content-center my-5">
           <hr style="border: 1px solid red; width: 50%; margin-left: 5%; margin-right: 5%;">
@@ -1374,6 +1377,17 @@
 
 
 <script>
+  function setRandomBackgroundImage() {
+    const bgImages = ['01.png', '02.png', '03.png'];
+    const randomIndex = Math.floor(Math.random() * bgImages.length);
+    const selectedImage = bgImages[randomIndex];
+
+    const bloc = document.getElementById('bloc-1');
+    bloc.style.backgroundImage = `url('img/${selectedImage}')`;
+  }
+
+  // 페이지 로드 시 자동 실행
+  window.onload = setRandomBackgroundImage;
 
   $(document).ready(function () {
     let globalNewscount = 0; // 전역 변수로 선언
