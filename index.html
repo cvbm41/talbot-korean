@@ -224,7 +224,7 @@
 
             <!-- 카드뉴스 -->
             <div class="dropdown d-flex justify-content-center mt-4">
-              <button class="btn btn-light dropdown-toggle d-none" type="button" id="dropdownMenuButton"
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="ticker-container">
                   <span class="input-group-text" id="basic-addon1">이벤트</span>
@@ -1596,6 +1596,7 @@
           startScrolling(); // 데이터 업데이트 후 스크롤 시작
         },
         error: function (jqXHR, textStatus, errorThrown) {
+          $('#dropdownMenuButton').addClass('d-none');
           console.error("Error fetching data: ", textStatus, errorThrown);
           $('#cardnews-list').html('<p>Error loading data. Please try again.</p>');
         }
