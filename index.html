@@ -45,12 +45,15 @@
     }
     </script>
 
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TPTVS53D');</script>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TPTVS53D');</script>
   <!-- End Google Tag Manager -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
@@ -68,6 +71,8 @@
   <link rel="stylesheet" type="text/css" href="style.css?4516">
   <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,40&display=swap&subset=latin,latin-ext'
     rel='stylesheet' type='text/css'>
+
+
 
   <!-- 카드뉴스 -->
   <style>
@@ -171,18 +176,18 @@
     }
   </style>
 
-<style>
-  /* 모바일 화면에서 accordion 너비를 100%로 설정 */
-  .accordion-credits {
-    width: 60%;
-  }
-
-  @media (max-width: 768px) {
+  <style>
+    /* 모바일 화면에서 accordion 너비를 100%로 설정 */
     .accordion-credits {
-      width: 100%;
+      width: 60%;
     }
-  }
-</style>
+
+    @media (max-width: 768px) {
+      .accordion-credits {
+        width: 100%;
+      }
+    }
+  </style>
 
 </head>
 
@@ -228,9 +233,12 @@
             <div class="text-center d-flex flex-column align-items-center  mt-lg-4">
               <a href="https://www.biola.edu/talbot-korean" class="btn btn-danger" target="_blank">공식 홈페이지로 이동<br><span
                   class="fw-light">입학문의 및 모집요강</span> </a>
-                  <button  class="btn btn-danger mt-3"  data-bs-toggle="modal" data-bs-target="#apply-modal">지원하기<br>
-                     </button>
-
+              <div>
+                <button class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#apply-modal">지원하기</button>
+                <!-- 문의하기 버튼 -->
+                <button class="btn btn-outline-warning mt-3" data-bs-toggle="modal"
+                  data-bs-target="#contact-modal">문의하기</button>
+              </div>
             </div>
 
             <div class="text-center mt-3">
@@ -357,8 +365,14 @@
 
     <div class="container text-center mt-5 mb-3 bgc-6419">
       <div class="row row-cols-1 row-cols-md-2">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/vjhZanr4baA?si=RxC3HEGWAKzHY-h1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/j8Rdt58t8Iw?si=7Lv8zT2ZHjFDR-mb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/vjhZanr4baA?si=RxC3HEGWAKzHY-h1"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/j8Rdt58t8Iw?si=7Lv8zT2ZHjFDR-mb"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -468,25 +482,25 @@
     <h3 class="text-light text-center mb-5">과정 및 학점 안내</h3>
     <div class=" bgc-6419 d-flex justify-content-center " id="accordion-credits">
 
-      <div ></div>
-      
+      <div></div>
+
     </div>
 
-        <!-- 구분선 -->
-        <div class="bgc-6419 " id="fee-line">
-          <div class="row">
-            <div class="col-12 d-flex justify-content-center my-5">
-              <hr style="border: 1px solid red; width: 50%; margin-left: 5%; margin-right: 5%;">
-            </div>
-          </div>
+    <!-- 구분선 -->
+    <div class="bgc-6419 " id="fee-line">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center my-5">
+          <hr style="border: 1px solid red; width: 50%; margin-left: 5%; margin-right: 5%;">
         </div>
-    
-        <h3 class="text-light text-center mb-5">수업료 납부 안내</h3>
-        <div class=" bgc-6419 d-flex justify-content-center " id="accordion-fee">
-    
-          <div ></div>
-          
-        </div>
+      </div>
+    </div>
+
+    <h3 class="text-light text-center mb-5">수업료 납부 안내</h3>
+    <div class=" bgc-6419 d-flex justify-content-center " id="accordion-fee">
+
+      <div></div>
+
+    </div>
 
     <!-- 구분선 -->
     <div class="bgc-6419">
@@ -597,49 +611,98 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="apply-modal" tabindex="-1" aria-labelledby="apply-modal-label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="apply-modal-label">필요서류</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h3><strong>- 에세이</strong></h3>
-        <div class="toggle-item-body"><p><strong>에세이 1 (1-2 페이지 분량)</strong></p>
-          <p>다음 질문들을 중심으로 본인의 신앙을 진솔하게 작성해 주세요.</p>
-          <ul><li>그리스도를 따르기로 결단하게 된 계기는 무엇입니까?</li><li>구원에 대한 당신의 성경적 이해는 무엇입니까?</li><li>당신은 지역 교회 공동체에 어떻게 기여해왔습니까?</li><li>당신이 갖게 된, 기독교적으로 성숙된 모습은 무엇입니까?</li></ul>
-          <p><strong>에세이 2&nbsp;<strong>(1-2 페이지 분량)</strong></strong></p>
-          <p>하나님께서 당신의 삶 가운데 어떻게 역사하고 계신 지, 그리고 Talbot에서의 훈련이 당신의 사역을 위한 중&nbsp;요한 발판이 되기를 원하는 이유를 다음 주제를 바탕으로 작성해 주십시오:<br></p>
-          <ul><li>지금까지 어떤 기독교 사역에 참여한 경험이 있습니까?</li><li>당신의 사역적 비전과 목표는 무엇입니까?</li><li>Talbot에서 선택한 학습과정이 그 목표를 이루는 데 어떻게 도움이 될 것이라 생각하십니까?</li></ul>
-          <ul class="list-dots"></ul></div>
+  <!-- Modal -->
+  <div class="modal fade" id="apply-modal" tabindex="-1" aria-labelledby="apply-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="apply-modal-label">필요서류</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3><strong>- 에세이</strong></h3>
+          <div class="toggle-item-body">
+            <p><strong>에세이 1 (1-2 페이지 분량)</strong></p>
+            <p>다음 질문들을 중심으로 본인의 신앙을 진솔하게 작성해 주세요.</p>
+            <ul>
+              <li>그리스도를 따르기로 결단하게 된 계기는 무엇입니까?</li>
+              <li>구원에 대한 당신의 성경적 이해는 무엇입니까?</li>
+              <li>당신은 지역 교회 공동체에 어떻게 기여해왔습니까?</li>
+              <li>당신이 갖게 된, 기독교적으로 성숙된 모습은 무엇입니까?</li>
+            </ul>
+            <p><strong>에세이 2&nbsp;<strong>(1-2 페이지 분량)</strong></strong></p>
+            <p>하나님께서 당신의 삶 가운데 어떻게 역사하고 계신 지, 그리고 Talbot에서의 훈련이 당신의 사역을 위한 중&nbsp;요한 발판이 되기를 원하는 이유를 다음 주제를 바탕으로 작성해
+              주십시오:<br></p>
+            <ul>
+              <li>지금까지 어떤 기독교 사역에 참여한 경험이 있습니까?</li>
+              <li>당신의 사역적 비전과 목표는 무엇입니까?</li>
+              <li>Talbot에서 선택한 학습과정이 그 목표를 이루는 데 어떻게 도움이 될 것이라 생각하십니까?</li>
+            </ul>
+            <ul class="list-dots"></ul>
+          </div>
           <div class="toggle-item-body">
             <h3 class="mt-2"><strong>- 추천서</strong></h3>
             <ul class="list-dots">
-            <li>평신도(멘토) 추천서 2부 (지원자가 출석하는 교회나 소속 단체)</li><li>교회 담임목사 추천서 1부</li>
+              <li>평신도(멘토) 추천서 2부 (지원자가 출석하는 교회나 소속 단체)</li>
+              <li>교회 담임목사 추천서 1부</li>
             </ul>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button> -->
-        <button 
-          type="button" 
-          class="btn btn-danger btn-lg" 
-          data-bs-dismiss="modal" 
-          onclick="window.open('https://biola.formstack.com/forms/talbot_korean_application', '_blank')"
-        >
-          지원하기
-        </button>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button> -->
+            <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal"
+              onclick="window.open('https://biola.formstack.com/forms/talbot_korean_application', '_blank')">
+              지원하기
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+    <!-- 문의 모달 -->
+    <div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="contact-modal-label">문의하기</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+              <input type="text" class="form-control" id="contact-name" placeholder="이름" required>
+            </div>
+            <div class="mb-2">
+              <input type="email" class="form-control" id="contact-email" placeholder="이메일" required>
+            </div>
+            <div class="mb-2">
+              <input type="text" class="form-control" id="contact-phone" placeholder="전화번호 (선택)">
+            </div>
+            <div class="mb-2">
+              <textarea class="form-control" id="contact-message" rows="4" placeholder="문의 내용" required></textarea>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="contact-need-reply" checked>
+              <label class="form-check-label" for="contact-need-reply">답변이 필요합니다</label>
+            </div>
+            <div id="contact-message-response" class="text-center text-success mt-2"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            <button type="button" class="btn btn-primary" id="send-contact-btn">문의 제출</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 </body>
+<script src="js/contact.js"></script>
+
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPTVS53D"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPTVS53D" height="0" width="0"
+    style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <script>
   //시작 배경 랜덤
@@ -796,7 +859,7 @@
         success: function (response) {
           console.log(response.results);
           updateCardNews(response.results);
-          
+
 
           // ★ 최소 변경: ticker 내용을 복제하여 무한 스크롤 효과를 만듭니다.
           const $tickerWrapper = $("#scrolling-headline");
