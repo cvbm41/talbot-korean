@@ -19,6 +19,8 @@
       need_reply: needReply
     };
 
+    $('#contact-modal-spinner').removeClass('d-none');
+
     $.ajax({
       url: "https://250204.aisystem64.org/api/articles/send_contact/",
     //   url: "http://127.0.0.1:8000/api/articles/send_contact/",
@@ -36,6 +38,9 @@
       },
       error: function (err) {
         $('#contact-message-response').text('문의 전송에 실패했습니다. 다시 시도해주세요.').css('color', 'red');
+      },
+      complete: function () {
+        $('#contact-modal-spinner').addClass('d-none');
       }
     });
   });
