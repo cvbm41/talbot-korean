@@ -1,0 +1,158 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link Swiper's CSS -->
+
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #000;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery-top {
+            height: 80%;
+            width: 100%;
+        }
+
+        .gallery-thumbs {
+            height: 20%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .gallery-thumbs .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        .gallery-thumbs .swiper-slide-active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container gallery-top">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(img/carousel/01.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/02.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/03.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/04.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/05.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/06.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/07.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/08.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/09.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/10.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/11.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/12.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/13.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/14.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/15.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/16.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/17.png)"></div>
+            <div class="swiper-slide" style="background-image:url(img/carousel/18.png)"></div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <div class="swiper-container gallery-thumbs">
+        <!-- <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(img/carousel/01.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/02.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/03.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/04.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/05.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/06.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/07.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/08.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/09.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/10.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/11.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/12.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/13.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/14.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/15.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/16.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/17.png)"></div>
+      <div class="swiper-slide" style="background-image:url(img/carousel/18.png)"></div>
+
+    </div> -->
+
+        <div class="custom-buttons text-center mt-4">
+            <button onclick="galleryTop.slideTo(1)">요약안내</button>
+            <button onclick="galleryTop.slideTo(2)">원서마감</button>
+            <button onclick="galleryTop.slideTo(3)">바이올라 대학교</button>
+            <button onclick="galleryTop.slideTo(4)">탈봇 신학대학원</button>
+            <button onclick="galleryTop.slideTo(5)">미국인 교수</button>
+            <button onclick="galleryTop.slideTo(6)">한국인 교수</button>
+            <button onclick="galleryTop.slideTo(7)">교육인증</button>
+            <button onclick="galleryTop.slideTo(8)">M.A.</button>
+            <button onclick="galleryTop.slideTo(9)">M.Div</button>
+            <button onclick="galleryTop.slideTo(10)">7가지 이유</button>
+            <button onclick="galleryTop.slideTo(12)">5가지 팁</button>
+        </div>
+    </div>
+
+
+    <!-- Initialize Swiper -->
+    <script>
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,
+            autoplay: {
+                delay: 2300, // 3초마다 자동 전환
+                disableOnInteraction: true, // 사용자 조작 이후에도 autoplay 유지
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            touchRatio: 0.2,
+            slideToClickedSlide: true,
+        });
+        galleryTop.controller.control = galleryThumbs;
+        galleryThumbs.controller.control = galleryTop;
+
+
+    </script>
+</body>
+
+</html>
