@@ -867,6 +867,12 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <script>
+
+
+// const globalUrl = "https://250204.aisystem64.org"
+const globalUrl = "https://excaatch.asuscomm.com:8443"
+
+
   //시작 배경 랜덤
   function setRandomBackgroundImage() {
     const bgImages = ['01.png', '02.png', '03.png'];
@@ -1033,7 +1039,7 @@
     function fetchCardNews() {
       const semesterId = '1';
       const count = '3';
-      const apiUrl = 'https://250204.aisystem64.org/api/articles/posts/?semester=' + semesterId + '&count=' + count;
+      const apiUrl = globalUrl + '/api/articles/posts/?semester=' + semesterId + '&count=' + count;
 
       $.ajax({
         url: apiUrl,
@@ -1087,7 +1093,8 @@
   //유투브 호출
   function fetchYoutubeShort() {
 
-    const apiUrl = 'https://250204.aisystem64.org/api/articles/send_youtube_short/';
+    // const apiUrl = globalUrl + '/api/articles/send_youtube_short/';
+    const apiUrl = 'https://youtube-short.bluest-dealers0m.workers.dev';
 
     $.ajax({
       url: apiUrl,
