@@ -22,8 +22,9 @@
     $('#contact-modal-spinner').removeClass('d-none');
 
     $.ajax({
-      url: "https://250204.aisystem64.org/api/articles/send_contact/",
-    //   url: "http://127.0.0.1:8000/api/articles/send_contact/",
+      url: "https://excaatch.asuscomm.com:8443/api/articles/send_contact/",
+      // url: "https://250204.aisystem64.org/api/articles/send_contact/",
+      //url: "http://127.0.0.1:8000/api/articles/send_contact/",
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify(data),
