@@ -5,6 +5,7 @@
     const message = $('#contact-message').val();
     const needReply = $('#contact-need-reply').is(':checked');
 
+    const apiUrl = globalUrl + "/api/articles/send_contact/"
 
     if (!name || !email || !message ) {
       alert("이름, 이메일, 문의내용이 필요해요");
@@ -18,12 +19,13 @@
       message: message,
       need_reply: needReply
     };
-
+    
     $('#contact-modal-spinner').removeClass('d-none');
+    
+    console.log(apiUrl)
 
     $.ajax({
-      url: globalUrl + "/api/articles/send_contact/",
-
+      url: apiUrl,
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify(data),
