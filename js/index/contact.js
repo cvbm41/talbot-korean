@@ -22,7 +22,7 @@
     
     $('#contact-modal-spinner').removeClass('d-none');
     
-    console.log(apiUrl)
+    // console.log(apiUrl)
 
     $.ajax({
       url: apiUrl,
