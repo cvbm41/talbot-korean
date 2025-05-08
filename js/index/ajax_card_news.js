@@ -39,7 +39,7 @@ function startScrolling() {
 
 
 function fetchCardNews() {
-  const semesterId = '1';
+  const semesterId = '16';
   const count = '3';
   const apiUrl = globalUrl + '/api/articles/posts/?semester=' + semesterId + '&count=' + count;
 
