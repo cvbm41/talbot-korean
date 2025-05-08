@@ -17,7 +17,7 @@ function getPageUrlMainNewsAll() {
       url: apiUrl,
       method: "GET",
     //   headers: { 'Authorization': 'Bearer ' + accessToken },
-      dataType: 'json',
+      dataType: 'json', 
       success: function (response) {
         
         const totalCount = response.count;
