@@ -9,7 +9,7 @@ function getPageUrlMainNewsAll() {
     flag = false;
   
     const count = 3;
-    const semester = 'all';
+    const semester = 16;
     const apiUrl = globalUrl + '/api/articles/posts/' + '?page=' + pageMainNews + '&count=' + count + '&semester=' + semester;
     // $('#main-news-all-list').html(createUniformPlaceholder(3));
   
