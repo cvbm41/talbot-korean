@@ -41,6 +41,9 @@
         <!-- JS가 여기에 카드 삽입 -->
       </div>
     </div>
+  <div id="zoom-loaing"><div class="spinner-border text-light my-3" role="status">
+  <span class="visually-hidden"></span>
+</div><h4>Loading.....</h4></div>
 
   </div>
 
@@ -63,6 +66,7 @@
       method: "GET",
       dataType: 'json',
       success: function (response) {
+        $("#zoom-loaing").addClass("d-none");
         updateZoomList(response.results);  // 단일 객체
       },
       error: function (jqXHR, textStatus, errorThrown) {
