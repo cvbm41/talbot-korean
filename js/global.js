@@ -1,4 +1,4 @@
-const globalUrlL = "http://127.0.0.1:8000"
+// const globalUrl = "http://127.0.0.1:8000"
 const globalUrl = "https://250204.aisystem64.org"
 // const globalUrl = "https://excaatch.asuscomm.com:8443"
 
