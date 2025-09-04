@@ -1,8 +1,13 @@
-// const globalUrl = "http://127.0.0.1:8000"
-const globalUrl = "https://250204.aisystem64.org"
-// const globalUrl = "https://excaatch.asuscomm.com:8443"
+var globalUrl = "";
 
-// "https://250204.aisystem64.org"
+if (location.hostname === "aisystem64.org") {
+  globalUrl = "https://250204.aisystem64.org";
+  // apiGlobalURL = 'https://excaatch.asuscomm.com:8443';
+  console.log("Using Production API URL");
+} else if (location.hostname === "rr720.synology.me") {
+  globalUrl = "http://127.0.0.1:8000";
+  console.log("Using Local API URL");
+}
 
 var accessToken = localStorage.getItem("access_token");
 var refreshToken = localStorage.getItem("refresh_token");

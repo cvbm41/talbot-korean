@@ -9,8 +9,8 @@ function getPageUrlMainNewsAll() {
     flag = false;
   
     const count = 3;
-    const semester = 16;
-    const apiUrl = globalUrl + '/api/articles/posts/' + '?page=' + pageMainNews + '&count=' + count + '&semester=' + semester;
+    const category = 'TPP';
+    const apiUrl = globalUrl + '/api/articles/posts/' + '?page=' + pageMainNews + '&count=' + count + '&category=' + category;
     // $('#main-news-all-list').html(createUniformPlaceholder(3));
   
     $.ajax({
@@ -37,30 +37,40 @@ function getPageUrlMainNewsAll() {
     });
   }
 
-  function updateMainNewsAllList(posts) {
-    function createMainNewsAllListItem(post, index) {
-      const tempDiv = document.createElement('div');
-    //   tempDiv.innerHTML = post.body;
-  
-    //   const titleEl = tempDiv.querySelector('strong');
-    //   const title = titleEl ? titleEl.innerText : post.title;
-  
-      return `
-        <div class="col-md-4">
-          <p class="mg-md fs-5">
-          </p>
-          <p>${post.body}</p>
-        </div>
-      `;
-    }
-  
-    const listItems = posts.slice(0, 3).map(createMainNewsAllListItem).join('');
-  
-    const moreItem = ''; // 필요 시 버튼 등 추가 가능
-  
-    // 상위 .row 요소 안에 렌더링
-    document.querySelector('#news-bloc .row').innerHTML = moreItem + listItems;
+function updateMainNewsAllList(posts) {
+  function createMainNewsAllListItem(post, index, colClass) {
+    return `
+      <div class="${colClass} mb-4">
+        <p>${post.body || ''}</p>
+      </div>
+    `;
   }
+
+  const $row = document.querySelector('#news-bloc .row');
+  if (!posts || posts.length === 0) {
+    $row.innerHTML = '<div class="text-center text-muted py-4">뉴스가 없습니다.</div>';
+    return;
+  }
+
+  // 개수별 컬럼 클래스 결정
+  const n = posts.length;
+  let colClass = 'col-12';
+  if (n === 1) {
+    $row.classList.add('justify-content-center');
+    colClass = 'col-12 col-md-8 col-lg-6';
+  } else if (n === 2) {
+    $row.classList.remove('justify-content-center');
+    colClass = 'col-12 col-md-6';
+  } else {
+    $row.classList.remove('justify-content-center');
+    colClass = 'col-12 col-md-6 col-lg-4';
+  }
+
+  // 최대 3개만 출력
+  const listItems = posts.slice(0, 3).map((p, i) => createMainNewsAllListItem(p, i, colClass)).join('');
+
+  $row.innerHTML = listItems;
+}
   
 
   

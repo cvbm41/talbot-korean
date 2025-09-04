@@ -39,9 +39,9 @@ function startScrolling() {
 
 
 function fetchCardNews() {
-  const semesterId = '16';
+  const category = 'TPP';
   const count = '3';
-  const apiUrl = globalUrl + '/api/articles/posts/?semester=' + semesterId + '&count=' + count;
+  const apiUrl = globalUrl + '/api/articles/posts/?category=' + category + '&count=' + count;
 
   $.ajax({
     url: apiUrl,
