@@ -1,6 +1,6 @@
 var globalUrl = "";
 
-if (location.hostname === "aisystem64.org") {
+if (location.hostname === "talbot-korean.com") {
   globalUrl = "https://250204.aisystem64.org";
   // apiGlobalURL = 'https://excaatch.asuscomm.com:8443';
   console.log("Using Production API URL");
