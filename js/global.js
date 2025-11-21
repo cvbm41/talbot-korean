@@ -1,8 +1,8 @@
 var globalUrl = "";
 
 if (location.hostname === "talbot-korean.com") {
-//   globalUrl = "https://250204.aisystem64.org";
-  globalUrl = 'https://aisystem64.synology.me:8443';
+  globalUrl = "https://250204.aisystem64.org";
+//   globalUrl = 'https://aisystem64.synology.me:8443';
   console.log("Using Production API URL");
 } else if (location.hostname === "rr720.synology.me") {
   globalUrl = "http://127.0.0.1:8000";
