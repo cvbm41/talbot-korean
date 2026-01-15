@@ -97,8 +97,6 @@
       <div class="container bloc-sm-lg bloc-md-md bloc-md-sm bloc-sm">
         <div class="row d-flex flex-column align-items-center text-center">
 
-          <div id="main-news-all-list"></div>
-
           <!-- style="width: 70%;" -->
           <div class="mx-auto w-90 w-md-70">
             <picture>
@@ -166,13 +164,13 @@
                 <div class="ticker-container">
                   <span class="input-group-text" id="basic-addon1">이벤트</span>
                   <div class="ticker-wrapper" id="scrolling-headline">
-                    <!-- 헤드라인 -->
+           
                     <div class="ticker">loading...</div>
                   </div>
                 </div>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="scrolling-headline-dropdown">
-                <!-- 카드 뉴스 리스트 -->
+
               </ul>
             </div>
 
@@ -394,7 +392,7 @@
     <div class="bloc bgc-6419 d-bloc" id="bloc-3">
       <div class="container bloc-sm-lg bloc-sm-md bloc-sm-sm bloc-sm" id="news-bloc">
         <div class="row" id="main-news-all-list">
-          <!-- JS에서 이 안에 col-md-4 블럭이 들어옴 -->
+      
         </div>
       </div>
     </div>
@@ -761,7 +759,6 @@
 <script src="js/index/background_rotate.js"></script>
 <script src="js/index/ajax_card_news.js"></script>
 <script src="js/index/ajax_youtube_short.js"></script>
-<script src="js/index/ajax_news_body.js"></script>
 <script src="js/index/slide_show.js"></script>
 <script src="js/index/contact.js"></script>
 
@@ -769,11 +766,12 @@
 
   // 페이지 로드 시 자동 실행
   window.onload = setRandomBackgroundImage;
-  fetchCardNews();
+  // fetchCardNews();
+  fetchCardNewsAndBody();
   fetchYoutubeShort();
 
-  const pageMainNewsAll = getPageUrlMainNewsAll();
-  fetchMainNewsAllList(pageMainNewsAll);
+  // const pageMainNewsAll = getPageUrlMainNewsAll();
+  // fetchMainNewsAllList(pageMainNewsAll);
 
   // 로그인
   $('[data-logged-in~="login-btn"]').on('click', function (event) {
