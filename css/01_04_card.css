@@ -1,0 +1,232 @@
+/* =========================================
+   Right Column & Card Stack (Design Upgraded)
+   ========================================= */
+
+.right-col {
+    background-color: var(--card-dark); /* 배경을 일관성 있게 맞춤 */
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 300px;
+    /* 안쪽으로 깊이감을 주는 내부 그림자 */
+    box-shadow: inset 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-stack-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 650px;
+    
+    display: flex;
+    justify-content: center;
+    perspective: 1200px; /* 3D 느낌 극대화 */
+}
+
+.stack-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 150px);
+    border-radius: 35px;
+    padding: 35px 30px; /* 좌우 여백 약간 조절 */
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 애니메이션을 더 부드럽게 */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    /* 프리미엄 느낌을 주는 반투명 테두리와 강해진 그림자 */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* 고급스러운 그라데이션 컬러셋 적용 */
+.bg-coral {
+    background: linear-gradient(135deg, #F95362 0%, #D63543 100%);
+    color: var(--white);
+}
+
+.bg-yellow {
+    background: linear-gradient(135deg, #FFEA7A 0%, #FFD93D 100%);
+    color: var(--text-dark); /* 노란 배경은 어두운 글씨 */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* 밝은 카드는 테두리 조정 */
+}
+
+.bg-blue {
+    background: linear-gradient(135deg, #2ec4ff 0%, #0baded 100%);
+    color: var(--white);
+}
+
+.bg-dark2 {
+    background: linear-gradient(135deg, #d8eaff 0%, #c7dfef 100%);
+    color: var(--text-dark); /* 밝은 파스텔톤은 어두운 글씨 */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- 카드 뎁스별 위치 (기존 유지, 효과만 강화) --- */
+.pos-front {
+    transform: translateY(170px) scale(1);
+    z-index: 4;
+    filter: blur(0px); /* 맨 앞 카드는 선명하게 */
+}
+.pos-middle {
+    transform: translateY(100px) scale(0.95);
+    z-index: 3;
+    filter: blur(1px); /* 2번째 카드 블러 */
+}
+.pos-back {
+    transform: translateY(30px) scale(0.9);
+    z-index: 2;
+    filter: blur(2px); /* 3번째 카드 블러 */
+}
+.pos-deep-back {
+    transform: translateY(-40px) scale(0.85);
+    z-index: 1;
+    filter: blur(3px); /* 4번째 카드 블러 */
+}
+
+/* 마우스 호버 시 살짝 떠오르는 생동감 추가 (블러 수치 유지) */
+.pos-front:hover { 
+    transform: translateY(165px) scale(1.02); 
+    box-shadow: 0 30px 50px rgba(0,0,0,0.3); 
+}
+.pos-middle:hover { 
+    transform: translateY(95px) scale(0.96); 
+    filter: blur(0.5px); 
+}
+.pos-back:hover { 
+    transform: translateY(25px) scale(0.91); 
+    filter: blur(1px); 
+}
+.pos-deep-back:hover { 
+    transform: translateY(-45px) scale(0.86); 
+    filter: blur(1.5px); 
+}
+
+/* 마우스 호버 시 살짝 떠오르는 생동감 추가 */
+.pos-front:hover { transform: translateY(165px) scale(1.02); box-shadow: 0 30px 50px rgba(0,0,0,0.3); }
+.pos-middle:hover { transform: translateY(95px) scale(0.96); }
+.pos-back:hover { transform: translateY(25px) scale(0.91); }
+.pos-deep-back:hover { transform: translateY(-45px) scale(0.86); }
+
+/* --- 카드 내부 텍스트 디자인 --- */
+.card-header {
+    margin-bottom: auto;
+}
+
+.card-title {
+    font-size: 1.8rem; /* 타이틀 폰트 크기 키움 */
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 15px;
+    padding-bottom: 15px; /* 타이틀 아래 디바이더 여백 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 어두운 배경 카드의 선 */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); 
+}
+
+/* 밝은 배경 카드의 선 색상 변경 */
+.bg-yellow .card-title,
+.bg-dark2 .card-title {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-subtitle {
+    font-size: 1.05rem;
+    font-weight: 500;
+    opacity: 0.9;
+    line-height: 1.6; /* 가독성을 위한 줄간격 확보 */
+    transition: opacity 0.3s ease;
+    margin-bottom: 10px;
+}
+
+/* --- 이미지 래퍼 디자인 --- */
+.card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 조금 더 트렌디한 가로세로 비율로 조정 */
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* 이미지에 뎁스 부여 */
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* 앞에 있을 때 이미지에 살짝 마우스 올리면 이미지 확대 효과 */
+.pos-front:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* 맨 앞이 아닌 카드들은 서브타이틀과 이미지를 부드럽게 가림 */
+.stack-card:not(.pos-front) .card-subtitle,
+.stack-card:not(.pos-front) .card-image-wrapper {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px); /* 스르륵 올라오는 효과를 위해 살짝 내려둠 */
+}
+
+.stack-card.pos-front .card-subtitle,
+.stack-card.pos-front .card-image-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+}
+
+/* =========================================
+   카드 내부 '자세히 보기' 버튼 스타일
+   ========================================= */
+.card-link-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 8px 18px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: fit-content;
+}
+
+/* 밝은 배경색(노란색, 파스텔블루) 카드에서는 버튼 테두리와 배경을 어둡게 처리 */
+.bg-yellow .card-link-btn, 
+.bg-dark2 .card-link-btn {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.card-link-btn:hover {
+    background-color: var(--coral);
+    color: var(--white);
+    border-color: var(--coral);
+    transform: translateY(-2px);
+}
+
+/* 🌟 카드가 뒤에 있을 때는 버튼이 보이지 않고 눌리지 않게 숨김 처리 */
+.stack-card:not(.pos-front) .card-link-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+.stack-card.pos-front .card-link-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s; /* 글자보다 살짝 늦게 나오는 세련된 타이밍 */
+}

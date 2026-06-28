@@ -1,0 +1,387 @@
+:root {
+    --bg-purple: #dde9f2;
+    --container-dark: #1E1E1E;
+    --card-dark: #2A2A2A;
+    --card-light-dark: #3A3A3A;
+    --coral: #d63543;
+    --yellow: #FFD93D;
+    --white: #FFFFFF;
+    --text-dark: #121212;
+    --text-gray: #A0A0A0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+}
+
+html,
+body {
+    overflow-x: clip;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Main App Container */
+.app-container {
+    background-color: var(--container-dark);
+    width: 100%;
+    max-width: 1400px;
+    border-radius: 40px;
+    padding: 30px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================================
+   Top Navigation (네비게이션 바)
+   ========================================= */
+.navbar {
+    background-color: var(--white);
+    border-radius: 50px;
+    padding: 15px 30px 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    min-width: auto; 
+    position: sticky;
+    top: 20px;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    margin-left: auto;
+    margin-right: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    width: max-content; 
+    padding: 10px 15px; 
+}
+
+.nav-brand {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 300px;
+}
+
+.nav-links {
+    display: flex;          
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
+    overflow: hidden;
+    white-space: nowrap;    
+    max-width: 800px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.navbar.scrolled .nav-brand,
+.navbar.scrolled .nav-links {
+    opacity: 0;
+    max-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    gap: 0; 
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    white-space: nowrap; 
+}
+
+.btn-nav-outline {
+    background: transparent;
+    border: 2px solid #E0E0E0;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-dark);
+    
+    /* [복구] 버튼 글자 수직 중앙 정렬 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-nav-solid {
+    background: var(--text-dark);
+    color: var(--white);
+    /* [복구] 옆 버튼과 높이를 동일하게 맞추기 위한 투명 테두리 */
+    border: 2px solid transparent; 
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    
+    /* [복구] 버튼 글자 수직 중앙 정렬 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   Main Grid Layout (누락되었던 좌우 분할 복구!)
+   ========================================= */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* 좌 1.2 : 우 1 비율 */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Left Column */
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0; 
+}
+
+/* Right Column (누락되었던 우측 컬럼 복구!) */
+.right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* =========================================
+   Cards & Content Styles
+   ========================================= */
+.hero-card {
+    background-color: var(--card-dark);
+    border-radius: 30px;
+    padding: 50px 40px;
+    color: var(--white);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    word-break: keep-all;
+}
+
+.hero-desc {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 80%;
+    margin-bottom: 20px;
+}
+
+.schedule-badge {
+    display: inline-block;
+    border: 1px solid var(--white);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.action-box {
+    border-radius: 20px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.action-box:hover {
+    transform: translateY(-2px);
+}
+
+.box-white {
+    background-color: var(--white);
+    color: var(--text-dark);
+}
+
+.box-dark {
+    background-color: var(--card-light-dark);
+    color: var(--white);
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.zoom-card, .info-card {
+    border-radius: 30px;
+    padding: 30px;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.zoom-card h3, .info-card h3 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-top: auto;
+}
+
+.zoom-card p, .info-card p {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.zoom-card:hover {
+    transform: translateY(-2px); 
+}
+
+.circle-arrow {
+    width: 40px;
+    height: 40px;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.course-btn {
+    background: var(--card-dark);
+    border: 1px solid #555;
+    color: white;
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.course-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* 링크 밑줄 제거 전용 클래스 */
+.no-underline {
+    text-decoration: none !important;
+    color: inherit !important; 
+}
+
+/* =========================================
+   Mobile Media Query (모바일 & 태블릿 반응형)
+   ========================================= */
+@media (max-width: 768px) { /* 태블릿 화면크기까지 커버하도록 768px로 조정 */
+    body { padding: 10px; }
+    
+    .app-container { 
+        padding: 15px; 
+        border-radius: 20px; 
+    }
+    
+    .navbar { 
+        padding: 10px 15px; 
+    }
+    
+    .nav-brand { 
+        max-width: 140px; 
+        height: auto; 
+    }
+    
+    .nav-actions { 
+        gap: 8px; 
+    }
+    
+    .btn-nav-outline, .btn-nav-solid {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    
+    /* 모바일에서는 강제로 1줄로 나열되게 변경 */
+    .main-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .action-row, .info-row {
+        grid-template-columns: 1fr;
+    }
+}

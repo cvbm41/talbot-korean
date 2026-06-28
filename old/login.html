@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탈봇 스터디 라운지 로그인</title>
+    <!-- Remixicon Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+
+    <style>
+        /* 배경 이미지 설정을 위한 커스텀 CSS */
+        body {
+            background-image: url('img/03.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center" style=" height: 100vh;">
+
+    <div class="card shadow-sm p-5 border-0 rounded-5" style="width: 100%; min-width: 300px; max-width: 500px;">
+
+        <div class="d-none" id="login-form">
+
+            <div class="mb-3">
+                <label for="login-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="login-email" required>
+            </div>
+            <div class="mb-3">
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="login-password" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input class="form-check-input" type="checkbox" id="remember-email">
+                <label class="form-check-label" for="remember-email">아이디 기억</label>
+            </div>
+            <p class="text-center mt-3" id="login-message"></p>
+            <button type="button" class="btn btn-dark w-100" id="login-submit-btn">로그인</button>
+            <p class="text-center mt-3">
+                계정이 없으신가요? <a href="#" id="register-link">회원가입</a>
+            </p>
+            <p class="text-center">
+                <a href="#" id="find-account-link">계정 및 비밀번호 찾기</a>
+            </p>
+            <p class="text-center">
+                <a href="#" id="service-center">고객센터</a>
+            </p>
+
+        </div>
+
+        <div class="d-none" id="register-form">
+            <div class="mb-3">
+                <label for="register-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="register-email" required>
+            </div>
+            <div class="mb-3">
+                <label for="register-username" class="form-label">이름(본명)</label>
+                <input type="text" class="form-control" id="register-username" required>
+            </div>
+            <div class="mb-3">
+                <label for="register-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="register-password" required>
+            </div>
+            <div class="mb-3">
+                <label for="register-passwordConfirm" class="form-label">Password 확인</label>
+                <input type="password" class="form-control" id="register-passwordConfirm" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="register-phone" class="form-label">전화번호(선택)</label>
+                <div class="d-flex justify-content-center align-items-center">
+                    <input type="text" class="form-control" id="phone-1" maxlength="3"
+                        oninput="moveNext(this, 'phone-2')">
+                    <span class="mx-1">-</span>
+                    <input type="text" class="form-control" id="phone-2" maxlength="4"
+                        oninput="moveNext(this, 'phone-3')">
+                    <span class="mx-1">-</span>
+                    <input type="text" class="form-control" id="phone-3" maxlength="4">
+                </div>
+            </div>
+            <div class="mb-3" id="register-student-number-div" >
+                <label for="register-student-number" class="form-label">학생ID</label>
+                <input type="text" class="form-control" id="register-student-number">
+            </div>
+
+            <!-- <p>유형</p>
+            <select class="form-select mb-3" aria-label="Small select example" id="account-type">
+                <option value="1" selected>학생</option>
+                <option value="2">교수</option>
+                <option value="3">동문</option>
+                <option value="4">파트너</option>
+            </select> -->
+
+            <div class="mb-3 form-check">
+                <input class="form-check-input" type="checkbox" id="terms-check"> <!-- required 삭제 -->
+                <label class="form-check-label" for="terms-check">
+                    약관에 동의합니다. <a href="#" id="terms-modal-btn" data-bs-toggle="modal" data-bs-target="#terms-modal">약관
+                        보기</a>
+                </label>
+            </div>
+            <div class="mb-3 form-check">
+                <input class="form-check-input" type="checkbox" id="consent-to-receive-ad"> <!-- required 삭제 -->
+                <label class="form-check-label" for="consent-to-receive-ad">
+                    이메일 및 연락처를 통해 학사 안내 및 이벤트 상품수령에 동의합니다. (선택)
+                </label>
+            </div>
+
+            <p class="text-center mt-3" id="register-message"></p>
+            <button type="button" class="btn btn-dark w-100" id="register-btn">회원가입</button>
+            <p class="text-center mt-3">
+                <a href="#" id="back-to-login-link">뒤로</a>
+            </p>
+        </div>
+
+        <div class="d-none" id="find-account-form">
+            <div class="mb-3">
+                <label for="find-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="find-email" required>
+            </div>
+            <p class="text-center mt-3" id="find-message"></p>
+            <button type="button" class="btn btn-dark w-100" id="findEmailBtn">계정 조회</button>
+            <button type="button" class="btn btn-dark w-100 mt-2 d-none" id="find-pw">비밀번호 변경</button>
+            <p class="text-center mt-3">
+                <a href="#" id="back-to-login-link-from-find">뒤로</a>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="terms-modal" tabindex="-1" aria-labelledby="terms-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="terms-modal-label">이용 약관</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="js/global.js"></script>
+<script src="js/gitignore.js"></script>
+<script src="js/toggle-spinner.js"></script>
+<script src="js/login/login.js"></script>
+<script src="js/login/register.js"></script>
+<script src="js/login/find_email.js"></script>
+<script src="js/login/send_email.js"></script>
+
+<!-- 모달 -->
+<!-- <script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+</script> -->
+
+<script>
+    // $(document).ready(function () {
+    let currentForm = 'login'; // 초기 폼 상태 (로그인 폼)
+
+    //     // 폼 변경 함수
+    function changeForm(formType) {
+        currentForm = formType;
+
+        // 모든 폼 숨기기 (d-none 클래스 추가)
+        $('#login-form, #register-form, #find-account-form').addClass('d-none');
+
+        // 선택된 폼만 보이게 하기 (d-none 클래스 제거)
+        if (formType === 'login') {
+            $('#login-form').removeClass('d-none');
+        } else if (formType === 'register') {
+            $('#register-form').removeClass('d-none');
+        } else if (formType === 'find-account') {
+            $('#find-account-form').removeClass('d-none');
+        }
+    }
+
+    //     // 초기 폼 로딩 (로그인 폼)
+    changeForm('login');
+
+    // 회원가입 링크 클릭 시
+    $('#register-link').on('click', function (e) {
+        e.preventDefault();
+        changeForm('register');
+    });
+
+    // 계정 찾기 링크 클릭 시
+    $('#find-account-link').on('click', function (e) {
+        e.preventDefault();
+        changeForm('find-account');
+    });
+
+    // 뒤로가기 클릭 시 (회원가입 → 로그인)
+    $('#back-to-login-link').on('click', function (e) {
+        e.preventDefault();
+        changeForm('login');
+    });
+
+    // 뒤로가기 클릭 시 (계정 찾기 → 로그인)
+    $('#back-to-login-link-from-find').on('click', function (e) {
+        e.preventDefault();
+        changeForm('login');
+    });
+
+    $('#terms-modal-btn').on('click', function (e) {
+        // e.preventDefault();
+
+        // 약관 파일 불러오기 (비동기적으로)
+        $.ajax({
+            url: 'terms.txt',
+            method: 'GET',
+            success: function (data) {
+                // 약관 내용이 로드되면 모달에 표시
+                $('#terms-modal .modal-body').html(data);
+            },
+            error: function (error) {
+                console.error('약관을 불러오는 데 실패했습니다:', error);
+            }
+        });
+    });
+
+    // 이메일 기억
+    if (localStorage.getItem('remember_email') === 'true') {
+        $('#remember-email').prop('checked', true);
+        $('#login-email').val(localStorage.getItem('email'));
+    }
+
+    // 로그인 버튼
+    $('#login-submit-btn').click(function () {
+        fetchLogin()
+    });
+
+    // 이메일 찾기 버튼
+    $('#findEmailBtn').click(function () {
+        fetchFindEmail()
+    });
+
+    // 비밀번호 변경 이메일 버튼 
+    $('#find-pw').click(function () {
+        fetchSendEmail()
+    });
+    // 회원 가입 버튼
+    $('#register-btn').click(function () {
+        fetchRegister()
+    });
+
+    //전화번호 자동 다음칸
+    function moveNext(currentInput, nextInputId) {
+        if (currentInput.value.length == currentInput.maxLength) {
+            document.getElementById(nextInputId).focus();
+        }
+    }
+</script>
+
+</html>

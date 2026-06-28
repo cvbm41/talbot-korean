@@ -1,0 +1,196 @@
+ /* =========================================
+   '더 저니' 압축형 가로 배너 섹션
+========================================= */
+        .journey-banner {
+            background-color: var(--card-dark);
+            border-radius: 30px;
+            padding: 25px 30px;
+            display: grid;
+            grid-template-columns: 320px 1fr auto;
+            gap: 30px;
+            align-items: center;
+            color: var(--white);
+            margin: 40px 0;
+            /* 위아래 여백 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .journey-video-wrap {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .journey-video-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .journey-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .journey-info h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: var(--yellow);
+            letter-spacing: -0.02em;
+        }
+
+        .journey-info p {
+            font-size: 0.95rem;
+            color: #b1b1b1;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            word-break: keep-all;
+        }
+
+        /* 3가지 특징을 태그 형태로 압축 */
+        .journey-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .journey-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .journey-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 160px;
+        }
+
+        .journey-actions span {
+            font-size: 0.8rem;
+            color: #b1b1b1;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-journey {
+            display: block;
+            text-align: center;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-journey-outline {
+            background: transparent;
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+        }
+
+        .btn-journey-outline:hover {
+            background: rgba(255, 217, 61, 0.1);
+        }
+
+        .btn-journey-solid {
+            background: var(--yellow);
+            color: var(--text-dark);
+        }
+
+        .btn-journey-solid:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* 반응형 처리 */
+        @media (max-width: 1024px) {
+            .journey-banner {
+                grid-template-columns: 1fr;
+                /* 세로 배치로 전환 */
+                gap: 20px;
+                text-align: center;
+            }
+
+            .journey-video-wrap {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .journey-tags {
+                justify-content: center;
+            }
+
+            .journey-actions {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 20px;
+            }
+        }
+
+        /* =========================================
+   더 저니 (The Journey) 영상 썸네일 스타일
+========================================= */
+.journey-video-wrap {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 25px; /* 모서리 둥글게 */
+    aspect-ratio: 16 / 9; /* 영상 비율 고정 */
+    background-color: #000;
+}
+
+.journey-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* 마우스 호버 시 이미지 살짝 확대 + 밝아짐 */
+.journey-video-wrap:hover .journey-thumb {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* 재생 버튼 디자인 */
+.journey-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65px;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* 마우스 호버 시 재생 버튼 포인트 컬러로 변경 */
+.journey-video-wrap:hover .journey-play-overlay {
+    background: var(--coral);
+    border-color: var(--coral);
+    transform: translate(-50%, -50%) scale(1.15);
+}

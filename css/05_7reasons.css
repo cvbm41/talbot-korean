@@ -1,0 +1,152 @@
+  /* =========================================
+   7가지 이유 (Reasons) 섹션 - 다크 모드 & 스티키 레이아웃
+========================================= */
+        .reasons-section {
+            padding: 80px 0;
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        /* 좌측 고정 (Sticky) 영역 */
+        .reasons-left {
+            /* 스크롤 시 좌측 타이틀과 이미지가 화면에 고정되도록 설정 */
+            position: sticky;
+            top: 120px;
+            align-self: start;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .reasons-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .reasons-title span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-top: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .reasons-image-box {
+            border-radius: 30px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            max-width: 90%;
+            border: 1px solid var(--border-dark);
+        }
+
+        .reasons-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        /* 우측 리스트 영역 */
+        .reasons-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reason-item {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-dark);
+            align-items: flex-start;
+        }
+
+        .reason-item:first-child {
+            padding-top: 0;
+            /* 첫 번째 항목 위쪽 여백 제거 */
+        }
+
+        /* 얇고 세련된 숫자 스타일 */
+        .reason-num {
+            font-size: 3.5rem;
+            font-weight: 200;
+            /* 얇은 폰트 웨이트 */
+            color: var(--coral);
+            /* 포인트 컬러 */
+            line-height: 1;
+            min-width: 70px;
+            letter-spacing: -0.05em;
+        }
+
+        .reason-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 8px;
+            /* 숫자와 텍스트 줄맞춤 */
+        }
+
+        .reason-text h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .reason-text p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-weight: 400;
+            word-break: keep-all;
+        }
+
+        /* 반응형 처리 */
+        @media (max-width: 1024px) {
+            .reasons-section {
+                grid-template-columns: 1fr;
+                /* 세로 배치로 전환 */
+                gap: 40px;
+            }
+
+            .reasons-left {
+                position: relative;
+                top: 0;
+            }
+
+            .reasons-title {
+                font-size: 3.5rem;
+            }
+
+            .reasons-image-box {
+                display: none;
+                /* 모바일에서는 공간 절약을 위해 이미지 숨김 처리 (선택사항) */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .reason-item {
+                flex-direction: column;
+                gap: 15px;
+                padding: 30px 0;
+            }
+
+            .reason-num {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* 랜덤 이미지 부드러운 전환(페이드) 효과 */
+#reasons-random-img {
+    transition: opacity 0.4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,222 @@
+/* =========================================
+   프로그램 요강 모달 & 아코디언 (화이트 테마, 스크롤 수정본)
+========================================= */
+
+.program-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.program-modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* 중복 제거 및 깔끔하게 정리된 다이얼로그 박스 */
+.program-modal-dialog {
+    width: 90%;
+    max-width: 800px; /* 넓직하고 시원하게 800px로 조정 */
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh; /* 화면의 85%까지만 커지도록 제한 */
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.program-modal-overlay.show .program-modal-dialog {
+    transform: translateY(0);
+}
+
+/* 내부 콘텐츠 래퍼 (스크롤을 위한 Flexbox 설정) */
+.program-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* 스크롤 활성화를 위한 마법의 코드 */
+}
+
+/* 헤더 영역 */
+.program-modal-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    flex-shrink: 0; 
+}
+
+.program-modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #121212;
+    margin: 0;
+}
+
+.program-modal-close {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 2.5rem;
+    font-weight: 200;
+    line-height: 0.5;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.program-modal-close:hover { color: var(--coral); }
+
+/* 바디 (스크롤 영역) */
+.program-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-bottom: 20px; /* 하단 여백 추가 */
+}
+
+.program-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+.program-modal-body::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+/* 안내 문구 */
+.modal-guide {
+    background: rgba(255, 107, 107, 0.08);
+    color: var(--coral);
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 20px 30px 25px 30px; /* 좌우 여백을 다이얼로그에 맞춤 */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================================
+   카테고리 및 아코디언 (초심플 미니멀 디자인)
+========================================= */
+.category-section { margin-bottom: 35px; padding: 0 30px; }
+.category-title { 
+    font-size: 1.15rem; 
+    font-weight: 800; 
+    color: #121212; 
+    margin-bottom: 6px; 
+    padding: 0; 
+    border: none; 
+}
+.category-desc { 
+    font-size: 0.9rem; 
+    color: #777; 
+    line-height: 1.5; 
+    margin-bottom: 15px; 
+    background: transparent; 
+    padding: 0; 
+}
+.category-courses { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; 
+}
+
+.course-item { 
+    background: transparent; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-radius: 0; 
+    overflow: hidden; 
+}
+.course-item:last-child { border-bottom: none; }
+
+.course-header { 
+    padding: 16px 10px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    transition: background 0.2s; 
+}
+.course-header:hover { background: #fafafa; }
+
+.c-code { 
+    font-size: 0.85rem; 
+    font-weight: 800; 
+    color: var(--coral); 
+    min-width: 75px; 
+    white-space: nowrap; 
+    background: none; 
+    padding: 0;
+}
+
+.c-name { flex-grow: 1; font-weight: 600; color: #222; font-size: 1rem; }
+.c-credits { font-size: 0.85rem; color: #999; font-weight: 500; white-space: nowrap; }
+.c-toggle-icon { font-weight: 300; font-size: 1.4rem; color: #ccc; transition: transform 0.3s, color 0.3s; }
+
+.course-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: transparent; }
+.course-body-inner { 
+    padding: 0 10px 20px 100px; 
+    color: #666; 
+    font-size: 0.9rem; 
+    line-height: 1.6; 
+    border: none; 
+    margin: 0; 
+}
+
+.course-item.open .course-body { max-height: 800px; } 
+.course-item.open .c-toggle-icon { transform: rotate(45deg); color: #121212; }
+
+/* =========================================
+   푸터 및 자세히 보기 버튼 (누락 복구됨)
+========================================= */
+.program-modal-footer {
+    padding: 15px 30px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    background: #ffffff;
+    flex-shrink: 0; 
+}
+
+.btn-detail-link { 
+    background: #121212; 
+    color: #ffffff; 
+    padding: 10px 20px; /* 작고 단정한 버튼 사이즈 */
+    border-radius: 8px; /* 모서리를 살짝만 둥글게 */
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem; /* 글씨 크기 축소 */
+    transition: background 0.2s, transform 0.2s; 
+    display: inline-block;
+}
+.btn-detail-link:hover { 
+    background: var(--coral); 
+    transform: translateY(-2px); 
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .program-modal-header { padding: 20px; }
+    .modal-guide { margin: 15px 20px; }
+    .category-section { padding: 0 20px; }
+    .program-modal-footer { padding: 15px 20px; }
+    
+    .course-header { flex-wrap: wrap; gap: 8px; padding: 15px 5px; }
+    .c-code { min-width: auto; }
+    .c-name { width: 100%; order: 3; margin-top: 5px; font-size: 0.95rem; }
+    .c-credits { margin-left: auto; }
+    .course-body-inner { padding: 0 5px 20px 5px; } 
+}

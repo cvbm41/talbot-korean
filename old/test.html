@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF → DOCX (Frontend Only)</title>
+  <!-- pdf.js (text extraction) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.js"></script>
+  <!-- docx (DOCX 생성) -->
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.min.js"></script>
+  <!-- (선택) Tesseract.js: 스캔 PDF용 OCR -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif; padding: 24px; }
+    .card { max-width: 920px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,.04); }
+    h1 { font-size: 20px; margin: 0 0 12px; }
+    label { display: block; margin: 10px 0 4px; font-weight: 600; }
+    input[type="file"] { padding: 8px; border: 1px solid #e5e7eb; border-radius: 10px; width: 100%; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .row > * { margin: 6px 0; }
+    button { padding: 10px 14px; border-radius: 12px; border: 1px solid #e5e7eb; background: #111827; color: white; cursor: pointer; font-weight: 600; }
+    button:disabled { background: #9ca3af; cursor: not-allowed; }
+    progress { width: 240px; height: 12px; }
+    .hint { color:#6b7280; font-size: 12px; }
+    .log { white-space: pre-wrap; background:#f8fafc; border:1px dashed #d1d5db; padding:12px; border-radius:10px; max-height:300px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>PDF → DOCX (프론트엔드만)</h1>
+    <p class="hint">텍스트 기반 PDF는 비교적 잘 변환됩니다. 스캔(이미지) PDF는 OCR 옵션을 켜세요. 레이아웃은 단순 재구성(단락/줄) 수준으로 유지됩니다.</p>
+
+    <label for="pdfInput">PDF 파일</label>
+    <input id="pdfInput" type="file" accept="application/pdf" />
+
+    <div class="row">
+      <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+        <input id="useOCR" type="checkbox" /> OCR 사용(텍스트가 거의 없으면)
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+        <input id="embedImages" type="checkbox" checked /> 페이지 이미지를 함께 포함(간단한 보존)
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+        <input id="keepPageBreaks" type="checkbox" checked /> 페이지 구분 삽입
+      </label>
+    </div>
+
+    <div class="row">
+      <button id="convertBtn" disabled>DOCX로 변환</button>
+      <progress id="prog" max="100" value="0" hidden></progress>
+      <span id="status" class="hint"></span>
+    </div>
+
+    <h3>로그</h3>
+    <div id="log" class="log"></div>
+  </div>
+
+<script>
+(() => {
+  const pdfInput = document.getElementById('pdfInput');
+  const convertBtn = document.getElementById('convertBtn');
+  const prog = document.getElementById('prog');
+  const statusEl = document.getElementById('status');
+  const logEl = document.getElementById('log');
+  const useOCREl = document.getElementById('useOCR');
+  const embedImagesEl = document.getElementById('embedImages');
+  const keepPageBreaksEl = document.getElementById('keepPageBreaks');
+
+  function log(msg){ logEl.textContent += `${msg}\n`; logEl.scrollTop = logEl.scrollHeight; }
+  function setStatus(t){ statusEl.textContent = t || ''; }
+  function setProgress(v){ prog.hidden = false; prog.value = v; }
+  function resetProgress(){ prog.hidden = true; prog.value = 0; }
+
+  pdfInput.addEventListener('change', () => {
+    convertBtn.disabled = !pdfInput.files?.length;
+  });
+
+  // pdf.js 워커 경로 자동 설정 (CDN 사용 시 필요)
+  if (!window.pdfjsLib) {
+    alert('pdf.js 로드를 확인하세요.');
+  } else {
+    // 최신 CDN 빌드는 스스로 워커를 번들에 포함하지만, 환경에 따라 아래 설정이 필요할 수 있음
+    // pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.worker.min.js';
+  }
+
+  convertBtn.addEventListener('click', async () => {
+    const file = pdfInput.files?.[0];
+    if (!file) return;
+    convertBtn.disabled = true;
+    logEl.textContent = '';
+    setStatus('PDF 읽는 중…');
+    setProgress(0);
+
+    try {
+      const arrayBuf = await file.arrayBuffer();
+      const loadingTask = pdfjsLib.getDocument({ data: arrayBuf });
+      const pdf = await loadingTask.promise;
+      log(`페이지 수: ${pdf.numPages}`);
+
+      const { Document, Packer, Paragraph, TextRun, Media, PageBreak } = docx; 
+      const docChildren = [];
+
+      let totalSteps = pdf.numPages;
+      let textCharCount = 0;
+
+      for (let p = 1; p <= pdf.numPages; p++) {
+        setStatus(`페이지 ${p}/${pdf.numPages} 처리 중…`);
+        const page = await pdf.getPage(p);
+
+        // 1) 텍스트 추출
+        const textContent = await page.getTextContent();
+        const items = textContent.items || [];
+        textCharCount += items.reduce((acc,it)=> acc + (it.str?.length||0), 0);
+
+        // 라인 그룹핑 (y좌표 기준 버킷)
+        const linesMap = new Map();
+        const yTolerance = 2.0; // 필요 시 조정
+        for (const it of items) {
+          const ts = it.transform; // [a,b,c,d,e,f], e=x, f=y
+          const y = ts && ts.length >= 6 ? ts[5] : 0;
+          // 근사 라인키 찾기
+          let key = null;
+          for (const k of linesMap.keys()) {
+            if (Math.abs(k - y) <= yTolerance) { key = k; break; }
+          }
+          if (key === null) key = y;
+          const arr = linesMap.get(key) || [];
+          arr.push({ x: ts[4] || 0, text: it.str || '' });
+          linesMap.set(key, arr);
+        }
+        // y 내림차순(상단→하단), 각 라인은 x 오름차순으로 정렬 후 텍스트 결합
+        const sortedY = Array.from(linesMap.keys()).sort((a,b) => b - a);
+        const pageLines = sortedY.map(y => {
+          const arr = linesMap.get(y).sort((a,b) => a.x - b.x);
+          return arr.map(t => t.text).join('');
+        });
+
+        // 페이지 텍스트 -> 문단 추가
+        for (const line of pageLines) {
+          if (line.trim().length === 0) continue;
+          docChildren.push(new Paragraph({ children: [ new TextRun(line) ] }));
+        }
+
+        // 2) (옵션) 페이지 이미지를 통째로 캔버스로 렌더 후 삽입 (간단한 레이아웃 보존용)
+        if (embedImagesEl.checked) {
+          const viewport = page.getViewport({ scale: 2 });
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = viewport.width; canvas.height = viewport.height;
+          await page.render({ canvasContext: ctx, viewport }).promise;
+          const dataUrl = canvas.toDataURL('image/png');
+          const img = Media.addImage(new docx.Document(), dataUrl); // 임시 Document로 addImage 호출 후 반환된 Drawing 사용
+          docChildren.push(new Paragraph(img));
+        }
+
+        if (keepPageBreaksEl.checked && p < pdf.numPages) {
+          docChildren.push(new Paragraph({ children: [ new PageBreak() ] }));
+        }
+
+        setProgress(Math.round((p / totalSteps) * 100));
+      }
+
+      // 텍스트가 매우 적고 OCR 옵션이 켜진 경우: OCR로 보충
+      if (useOCREl.checked && textCharCount < 50) {
+        log('텍스트가 거의 없어 OCR 실행 시도…');
+        const pdf2 = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
+        for (let p = 1; p <= pdf2.numPages; p++) {
+          setStatus(`OCR ${p}/${pdf2.numPages}…`);
+          const page = await pdf2.getPage(p);
+          const viewport = page.getViewport({ scale: 2 });
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = viewport.width; canvas.height = viewport.height;
+          await page.render({ canvasContext: ctx, viewport }).promise;
+          const dataUrl = canvas.toDataURL('image/png');
+          const { data: { text } } = await Tesseract.recognize(dataUrl, 'kor+eng', {
+            tessedit_pageseg_mode: 3,
+          });
+          if (text && text.trim()) {
+            docChildren.push(new Paragraph({ children:[ new TextRun(text) ] }));
+          }
+        }
+      }
+
+      const doc = new Document({ sections: [{ properties: {}, children: docChildren }] });
+      setStatus('DOCX 패킹…');
+      const blob = await docx.Packer.toBlob(doc);
+
+      // 다운로드
+      const outName = (file.name.replace(/\.pdf$/i,'') || 'converted') + '.docx';
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = outName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+
+      setStatus('완료');
+      log('변환 완료.');
+    } catch (err) {
+      console.error(err);
+      log('오류: ' + (err?.message || err));
+      setStatus('실패');
+    } finally {
+      resetProgress();
+      convertBtn.disabled = false;
+    }
+  });
+})();
+</script>
+
+<hr>
+<h2>알려둘 점 (한계 & 팁)</h2>
+<ul>
+  <li><strong>정교한 레이아웃</strong>(다단/표/각주/머리말·바닥글)은 완벽 보존이 어렵습니다. 본 예시는 <em>텍스트 추출 → 줄/단락 재구성</em>에 초점이 있습니다.</li>
+  <li>스캔 PDF는 <strong>OCR</strong>이 필요합니다. Tesseract.js를 켜면 속도가 느려질 수 있습니다. (언어 데이터에 따라 정확도 달라짐)</li>
+  <li>폰트/텍스트 방향/수식/복잡한 벡터 그래픽은 제한적입니다. 필요 시 페이지 이미지를 함께 삽입(옵션)해 시각적 보존을 보조합니다.</li>
+  <li>대용량 PDF는 브라우저 메모리를 많이 사용합니다. 페이지 단위 처리로 구성했지만, 너무 큰 파일은 탭이 멈출 수 있습니다.</li>
+  <li>배포 시 pdf.js 워커 경로가 환경에 따라 필요할 수 있습니다(주석 참고).</li>
+</ul>
+
+</body>
+</html>

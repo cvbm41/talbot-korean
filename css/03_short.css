@@ -1,0 +1,320 @@
+  /* =========================================
+   3D Coverflow 스타일 쇼츠 캐러셀 (다크 테마)
+========================================= */
+  .shorts-carousel-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 0 0 20px 0;
+      margin: 0 0 40px 0;
+  }
+
+  .coverflow-container {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+      /* 3D 깊이감 부여 */
+  }
+
+  /* 개별 카드 기본 설정 */
+  .short-card {
+      position: absolute;
+      width: 700px;
+      height: 380px;
+      background-color: var(--card-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 25px;
+      display: flex;
+      transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0;
+      z-index: 0;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      cursor: pointer;
+  }
+
+  /* 내부 레이아웃 (좌측: 텍스트 / 우측: 이미지) */
+  .short-info {
+      padding: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  .short-num-badge {
+      font-size: 3.5rem;
+      font-weight: 200;
+      color: var(--coral);
+      margin-bottom: 10px;
+      line-height: 1;
+      font-style: italic;
+      letter-spacing: -0.05em;
+  }
+
+  .short-title {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      word-break: keep-all;
+      display: -webkit-box;
+      /* -webkit-line-clamp: 3; */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
+
+  .short-tags {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-weight: 500;
+  }
+
+  .short-thumb {
+      width: 280px;
+      position: relative;
+      background: #000;
+  }
+
+  .short-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+  }
+
+  /* 재생 버튼 오버레이 */
+  .short-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+  }
+
+  /* 3D 위치 및 크기 상태 변화 클래스 (JS에서 제어) */
+  .short-card.active {
+      opacity: 1;
+      z-index: 3;
+      transform: translateX(0) scale(1);
+  }
+
+  .short-card.active:hover .short-thumb img {
+      opacity: 1;
+  }
+
+  .short-card.active:hover .short-play-overlay {
+      background: var(--coral);
+      border-color: var(--coral);
+      transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .short-card.prev-1 {
+      opacity: 0.7;
+      z-index: 2;
+      transform: translateX(-40%) scale(0.85);
+  }
+
+  .short-card.next-1 {
+      opacity: 0.7;
+      z-index: 2;
+      transform: translateX(40%) scale(0.85);
+  }
+
+  .short-card.prev-2 {
+      opacity: 0.3;
+      z-index: 1;
+      transform: translateX(-70%) scale(0.7);
+  }
+
+  .short-card.next-2 {
+      opacity: 0.3;
+      z-index: 1;
+      transform: translateX(70%) scale(0.7);
+  }
+
+  .short-card.hidden-card {
+      opacity: 0;
+      transform: scale(0.5);
+      z-index: 0;
+      pointer-events: none;
+  }
+
+  /* 좌우 네비게이션 버튼 */
+  .shorts-nav {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      /* 빈 공간 클릭 통과 */
+      z-index: 10;
+  }
+
+  .shorts-nav .nav-circle {
+      pointer-events: auto;
+      /* 버튼만 클릭 활성화 */
+      margin: 0 10px;
+      width: 50px;
+      height: 50px;
+  }
+
+  /* 반응형 처리 */
+  @media (max-width: 1024px) {
+      .short-card {
+          width: 550px;
+          height: 320px;
+      }
+
+      .short-thumb {
+          width: 220px;
+      }
+
+      .short-title {
+          font-size: 1.3rem;
+      }
+
+      .short-card.prev-1 {
+          transform: translateX(-45%) scale(0.85);
+      }
+
+      .short-card.next-1 {
+          transform: translateX(45%) scale(0.85);
+      }
+  }
+
+  @media (max-width: 600px) {
+      .short-card {
+          width: 320px;
+          height: 450px;
+          flex-direction: column-reverse;
+          /* 모바일에서는 이미지를 위로, 텍스트를 아래로 */
+      }
+
+      .short-thumb {
+          width: 100%;
+          height: 220px;
+      }
+
+      .short-info {
+          padding: 25px;
+      }
+
+      .short-title {
+          font-size: 1.2rem;
+      }
+
+      .short-num-badge {
+          font-size: 2.5rem;
+      }
+
+      /* 모바일에서는 좌우 카드 겹침 비율 축소 */
+      .short-card.prev-1 {
+          transform: translateX(-55%) scale(0.85);
+      }
+
+      .short-card.next-1 {
+          transform: translateX(55%) scale(0.85);
+      }
+
+      .shorts-nav {
+          display: none;
+          /* 모바일 공간 확보를 위해 화살표 숨김 */
+      }
+  }
+
+
+  /* =========================================
+   쇼츠 섹션 전체 헤더 스타일
+========================================= */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* 아래쪽 기준선 정렬 */
+    padding: 0 40px; /* 기존 카드 패딩과 맞춰 여백 조절 */
+    margin-bottom: 30px; /* 제목과 캐러셀 사이 간격 */
+    width: 100%;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.section-subtitle {
+    color: var(--coral);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.section-title {
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* 채널 이동(더보기) 텍스트 버튼 */
+.btn-view-all {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+    padding-bottom: 8px; /* 타이틀 라인과 시각적으로 맞추기 위함 */
+}
+
+.btn-view-all:hover {
+    color: var(--white); /* 마우스 올리면 흰색으로 강조 */
+}
+
+.btn-view-all .arrow-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* 마우스 올리면 화살표가 오른쪽으로 살짝 이동 */
+.btn-view-all:hover .arrow-icon {
+    transform: translateX(5px);
+    color: var(--coral); /* 화살표만 포인트 컬러 */
+}
+
+/* 모바일 반응형: 화면이 좁아지면 위아래로 배치 */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 20px;
+        gap: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}

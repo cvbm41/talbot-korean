@@ -1,0 +1,51 @@
+/* 슬라이더 래퍼 */
+.hero-slider-wrapper {
+    position: relative;
+    flex-grow: 1;          /* 기존 hero-card의 높이/너비 역할 승계 */
+    border-radius: 30px;   /* 둥근 테두리 밖으로 사진이 나가지 않게 */
+    overflow: hidden;      
+    display: flex;
+    flex-direction: column;
+}
+
+/* 슬라이드가 가로로 길게 나열되는 기차 트랙 역할 */
+.hero-slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 고급스러운 감속 슬라이딩 효과 */
+}
+
+/* 개별 슬라이드 설정 */
+.hero-card.slide-item {
+    min-width: 100%;       /* 한 화면에 하나씩 꽉 차게 */
+    border-radius: 0;      /* 래퍼가 이미 둥글게 처리함 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 하단 점(인디케이터) */
+.slider-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ffffff;
+    width: 25px; /* 현재 페이지 점은 길게 표시 (최신 트렌드) */
+    border-radius: 5px;
+}

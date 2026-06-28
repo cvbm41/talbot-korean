@@ -1,0 +1,211 @@
+   /* =========================================
+           새로운 하단 비디오 섹션
+        ========================================= */
+        .video-section {
+            background-color: var(--container-dark);
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-bento-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--card-dark);
+            transition: transform 0.2s;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+
+        .play-overlay-small {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        /* 좌측 대표 영상 */
+        .main-video {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .main-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+        }
+
+        .main-video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: var(--white);
+            z-index: 1;
+        }
+
+        .main-video-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .main-video-info p {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        /* 우측 일반 영상 6개 (2열 3행) */
+        .sub-videos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .sub-video {
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+        }
+
+        .sub-video-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+        }
+
+        .sub-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sub-video-info {
+            padding: 15px;
+            color: var(--white);
+        }
+
+        .sub-video-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* =========================================
+           모달 (유튜브 플레이어)
+        ========================================= */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 4rem;
+            font-weight: 200;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+        }
+
+        .modal-content {
+            width: 80%;
+            max-width: 1100px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+
+            .main-grid,
+            .video-bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .right-col {
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .action-row,
+            .info-row {
+                grid-template-columns: 1fr;
+            }
+
+            .sub-videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .main-videos-wrapper {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            /* 세로로 2등분 */
+            gap: 15px;
+            /* 영상 간격 */
+            height: 100%;
+        }

@@ -1,0 +1,829 @@
+<html><head>
+
+<style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+
+/* 1. 모달 배경 오버레이 (정중앙 배치 완벽 고정) */
+.tk-modal-overlay {
+    display: none; /* 기본 숨김 */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0; /* 100% 대신 상하좌우 0으로 꽉 채움 (스크롤바 밀림 방지) */
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.tk-modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 2. 모달 컨테이너 본체 (크기 90%로 대폭 확대) */
+.tk-modal-container {
+    background-color: #ffffff;
+    width: 90%;          /* 좌우로 훨씬 넓게 */
+    max-width: 1400px;   /* 최대 크기 제한도 넉넉하게 */
+    height: 90vh;        /* 위아래 높이도 화면의 90% 사용 */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    margin: auto;        /* flex와 더불어 완벽한 중앙 정렬을 보장 */
+}
+
+/* 3. 모달 헤더 */
+.tk-modal-header {
+    background-color: #ffffff; /* 배경색을 흰색으로 변경 */
+    border-bottom: 1px solid #e0e0e0; /* 헤더와 본문을 깔끔하게 나눠주는 얇은 선 추가 */
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; 
+}
+
+.tk-modal-title {
+    color: #1E1E1E; /* 배경이 흰색이므로 제목을 진한 다크 그레이로 변경 */
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.tk-close-btn {
+    background: none;
+    border: none;
+    color: #1E1E1E; /* X 버튼 색상도 진하게 변경 */
+    font-size: 2.5rem; 
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 0 10px;
+}
+
+.tk-close-btn:hover {
+    color: #d63543;
+}
+
+/* 4. 모달 스크롤 가능한 본문 영역 */
+.tk-modal-body {
+    padding: 30px;
+    overflow-y: auto;    /* 내용이 길어지면 내부에서만 스크롤 됨 */
+    flex-grow: 1;        /* 남은 공간을 꽉 채움 */
+    background-color: #f9f9f9;
+}
+
+
+.credit-page html {
+	-webkit-print-color-adjust: exact;
+}
+.credit-page * {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+.credit-page body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+.credit-page 	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+.credit-page body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+.credit-page a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.credit-page .pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+.credit-page h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+.credit-page h3 strong {
+	font-weight: 600;
+}
+
+.credit-page .page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+.credit-page h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+.credit-page h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.credit-page h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.credit-page .source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.credit-page .callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+.credit-page figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+.credit-page figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+.credit-page mark {
+	background-color: transparent;
+}
+
+.credit-page .indented {
+	padding-left: 1.5em;
+}
+
+.credit-page hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.credit-page img {
+	max-width: 100%;
+}
+
+@media only print {
+.credit-page 	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+.credit-page 	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+.credit-page 	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+.credit-page 	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.credit-page .collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+.credit-page 	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.credit-page .collection-content {
+	font-size: 0.875rem;
+}
+
+.credit-page .collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.credit-page .column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.credit-page .column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.credit-page .column > *:first-child {
+	margin-top: 0;
+}
+
+.credit-page .table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.credit-page .table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.credit-page .table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.credit-page .table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.credit-page .table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+.credit-page td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.credit-page table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+.credit-page td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+.credit-page th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+.credit-page ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+.credit-page li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+.credit-page ul > li {
+	list-style: disc;
+}
+
+.credit-page ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+.credit-page ul.to-do-list > li {
+	list-style: none;
+}
+
+.credit-page .to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+.credit-page ul.toggle > li {
+	list-style: none;
+}
+
+.credit-page ul {
+	padding-inline-start: 1.7em;
+}
+
+.credit-page ul > li {
+	padding-left: 0.1em;
+}
+
+.credit-page ol {
+	padding-inline-start: 1.6em;
+}
+
+.credit-page ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+.credit-page ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+.credit-page ol > li {
+	padding-left: 0.2em;
+}
+
+.credit-page .mono ol {
+	padding-inline-start: 2em;
+}
+
+.credit-page .mono ol > li {
+	text-indent: -0.4em;
+}
+
+.credit-page .toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.credit-page .toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.credit-page .toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.credit-page .selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.credit-page .collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.credit-page .page-description {
+	margin-bottom: 2em;
+}
+
+.credit-page .simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.credit-page .simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.credit-page .simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.credit-page .simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.credit-page .simple-table-header {
+	font-weight: 500;
+}
+
+.credit-page time {
+	opacity: 0.5;
+}
+
+.credit-page .icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+.credit-page img.icon {
+	border-radius: 3px;
+}
+
+.credit-page .callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.credit-page .callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.credit-page .callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.credit-page .user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.credit-page .user-icon-inner {
+	font-size: 0.8em;
+}
+
+.credit-page .text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.credit-page .page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.credit-page .page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.credit-page .page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.credit-page .page-header-icon img {
+	border-radius: 3px;
+}
+
+.credit-page .link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+.credit-page p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+.credit-page td > time {
+	white-space: nowrap;
+}
+
+.credit-page input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+.credit-page p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.credit-page .image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+.credit-page code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+.credit-page code {
+	color: #eb5757;
+}
+
+.credit-page .code {
+	padding: 1.5em 1em;
+}
+
+.credit-page .code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.credit-page .code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+.credit-page blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.credit-page blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.credit-page .bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.credit-page .bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.credit-page .bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.credit-page .bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.credit-page .bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.credit-page .bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.credit-page .bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.credit-page .sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.credit-page .code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.credit-page .serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.credit-page .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.credit-page .pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.credit-page .pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.credit-page .pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.credit-page .pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.credit-page .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.credit-page .pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.credit-page .pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.credit-page .pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.credit-page .pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.credit-page .pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.credit-page .pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.credit-page .pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.credit-page .pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.credit-page .pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.credit-page .pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.credit-page .pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.credit-page .highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.credit-page .highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.credit-page .highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.credit-page .highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.credit-page .highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.credit-page .highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.credit-page .highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.credit-page .highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.credit-page .highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.credit-page .highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.credit-page .highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.credit-page .highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.credit-page .highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.credit-page .highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.credit-page .highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.credit-page .highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.credit-page .highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.credit-page .highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.credit-page .highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.credit-page .highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.credit-page .block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.credit-page .block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.credit-page .block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.credit-page .block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.credit-page .block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.credit-page .block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.credit-page .block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.credit-page .block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.credit-page .block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.credit-page .block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.credit-page .block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.credit-page .block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.credit-page .block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.credit-page .block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.credit-page .block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.credit-page .block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.credit-page .block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.credit-page .block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.credit-page .block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.credit-page .block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.credit-page .select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.credit-page .select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.credit-page .select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.credit-page .select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.credit-page .select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.credit-page .select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.credit-page .select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.credit-page .select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.credit-page .select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.credit-page .select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.credit-page .checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.credit-page .checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.credit-page .checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head ><div class="credit-page"><article id="26a44f92-059a-8056-a928-d4a167f48662" class="page sans"><header><div class="page-header-icon undefined"></div><h1 class="page-title" dir="auto">학점인정</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h1 id="27e44f92-059a-8040-a44a-d8a40190ff79" class="">학점 인정 종류</h1></div><div style="display:contents" dir="auto"><ol type="1" id="27e44f92-059a-808b-8cc8-c07cef9826d9" class="numbered-list" start="1"><li><strong>언어 과목 인증 (Biblical Languages): </strong>이전 학교에서 언어 과목(히브리어, 헬라어)을 수강한 경우 학점을 인정받을 수 있습니다.<div style="display:contents" dir="auto"><ul id="28344f92-059a-80c4-8f37-ea3eb1a5d0e6" class="toggle"><li><details ><summary><mark class="highlight-gray">시험을 통한 인증?</mark></summary><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28344f92-059a-8068-92df-c8e082f41602"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="28344f92-059a-8088-8e48-dddfcd293123" class=""><strong>히브리어와 헬라어 과목</strong>은 정규 수업을 듣지 않고도, <strong>공인 인증 시험에 통과하면 수강하지 않아도 됩니다.</strong></p></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-80e6-a1d4-e3a6ad731985" class="bulleted-list"><li style="list-style-type:disc">미국에 있는 현지 공인 인증 기관 혹은 Biola 본교에 직접 방문해 출석 형태로 응시하셔야 합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28644f92-059a-80ca-b0e6-ff2a2abd0037" class="bulleted-list"><li style="list-style-type:disc">시험을 완료하는 데 90분이며 감독관이 동반됩니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28644f92-059a-8091-bd14-e20957b670f4" class="bulleted-list"><li style="list-style-type:disc"> 88% 이상의 점수를 받아야 통과 됩니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-80db-933f-f28f7c56bab6" class="bulleted-list"><li style="list-style-type:disc">시험에 합격하면 해당 언어 과목은 듣지 않아도 되지만, 해당 과목의 학점은 따로 인정되지 않기 때문에 다른 과목을 수강해서 그 학점을 따로 채워야 합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-8045-ae78-e6977483c1e1" class="bulleted-list"><li style="list-style-type:disc">시험은 입학 후 <strong>첫 학기 중</strong> 행정 팀장에게 문의 주시면 됩니다.</li></ul></div></div></figure></div></details></li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="27e44f92-059a-80f5-a98d-f339916ce56a" class="numbered-list" start="2"><li><strong>신약, 구약 개론 (Prerequisite Courses): </strong>이전 학교에서 신구약 개론 과목을 수강한 경우 선수강 과정을 건너뛰실 수 있습니다. <div style="display:contents" dir="auto"><ul id="27e44f92-059a-8096-83ac-db617d240c89" class="toggle"><li><details ><summary><mark class="highlight-gray">선수강 과목이란?</mark></summary><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28144f92-059a-80eb-92fe-fd09b4fb4395"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="27e44f92-059a-80ce-9681-dc4b6d84c727" class=""><mark class="highlight-default"><strong>선수강 과목은 학점이 인정되지 않지만 필수로 이수해야 하는 과목입니다.</strong></mark></p></div><div style="display:contents" dir="auto"><ul id="28144f92-059a-8092-8750-c8928d6ccc17" class="bulleted-list"><li style="list-style-type:disc">신학대학원 석사과정은 학생이 신학학사에 준하는 수준을 기대하고 있기 때문에, 최소한 아래의 두 과정을 수료했음을 전제로 하고 있습니다. </li></ul></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-80b3-b4d0-e48eec1616d8" class="bulleted-list"><li style="list-style-type:disc">만약 해당 과목을 수료하지 않은 경우, 과목당 3학점에 준하는 수강료를 납부한 후 탈봇신학대학원에서 수강할 수 있습니다. </li></ul></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-80db-9ee2-c558b39d1fb6" class="bulleted-list"><li style="list-style-type:disc">이 두 과목은 학점이 없는 과목으로, 수강을 완료하더라도 졸업학점과는 별개의 ‘Pass’ 학점 과목입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="29e44f92-059a-8071-ab61-f33739304bd5" class="bulleted-list"><li style="list-style-type:disc">과목을 수강 하셔야 하는 경우 졸업전까지 수강하셔야 합니다.</li></ul></div><div style="display:contents" dir="ltr"><table id="27e44f92-059a-80c3-a8b7-df40eedc3cc4" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="27e44f92-059a-8024-9cdb-e9ddcab7df2b"><td id="Fvhk" class=""><a href="https://catalog.biola.edu/search/?search=TKBE+519">TKBE 519</a></td><td id="PO|m" class="" style="width:139px">구약 개관</td><td id="\XZh" class="" style="width:411px">선별된 입문 및 중요 이슈, 관련 배경, 주요 주제와 분류, 중요한 문제 등 구약성서에 대한 광범위한 탐색</td></tr></div><div style="display:contents" dir="ltr"><tr id="27e44f92-059a-8026-a788-cc894b317d07"><td id="Fvhk" class=""><a href="https://catalog.biola.edu/search/?search=TKBE+520">TKBE 520</a></td><td id="PO|m" class="" style="width:139px">신약 개관</td><td id="\XZh" class="" style="width:411px">선별된 입문 및 비평적 이슈, 관련 배경, 주요 주제 및 구분, 결정적 문제를 포함하여 신약성경 책에 대한 일반적인 개요</td></tr></div></tbody></table></div></div></figure></div></details></li></ul></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="27e44f92-059a-8095-8cec-cdf0f9dec7f3" class="numbered-list" start="3"><li><strong>학점 인정 과목 (Program Courses):</strong> 위의 두 종류를 제외한 모든 인정받고자 하는 과목입니다.</li></ol></div><div style="display:contents" dir="auto"><blockquote id="27e44f92-059a-8067-81b7-fdf87458e717" class="">이전 수료한 <strong>학사(대학교)</strong>와 <strong>석사(대학원)</strong>성적 모두 평가 대상이 될 수 있지만, 실제 통과 여부와 최종 인정 학점은 종합적 평가를 통해 결정되기 때문에 학점 인정 담당자 외에는 인정 여부와 평가 학점을 미리 알 수 없습니다.</blockquote></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="34344f92-059a-8021-a460-ccbe6d68ef63"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="34344f92-059a-801b-a5e0-fe4badebd0e8" class="">*대학원이 아닌 대학교 성적은 인정받기 쉽지 않습니다</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="2ba44f92-059a-80a4-b3bb-c13e016836af" class="">첫 학기 수강 과정을 마친 이후에는 학점을 인정받을 수 없습니다.(행정 부학장 지시 사항)</p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="29044f92-059a-80b2-90fa-d9effae2820b"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="29044f92-059a-8042-ad0e-c4140f42f6ef" class="">영어 성적표의 이름이 여권의 이름과 <strong>동일</strong>한지 꼭 확인하셔야 합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-802b-89e9-d5a6d7dd5d2a" class="">한국식 표기법 ‘Gil Dong Hong’과 여권의 표기법 ‘Gildong Hong’은 동일하게 인정됩니다.</p></div></div></figure></div><div style="display:contents" dir="auto"><h1 id="28344f92-059a-801c-8cd0-c04acc3e7417" class=""><strong>시작하기</strong></h1></div><div style="display:contents" dir="auto"><p id="28d44f92-059a-80e2-9be3-f144029e2f87" class=""><strong>언어 과목</strong> 및 <strong>신구약 개론</strong> 등 <strong>모든 과목</strong> 인증은 다음과 같은 절차를 통해 진행됩니다.</p></div><div style="display:contents" dir="auto"><h3 id="26a44f92-059a-8008-a365-f3df672e6747" class=""><strong>경우 1. Transfer Evaluation System (TES) 검색</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="29444f92-059a-804c-8f4a-c2ed2580c264"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="ltr"><figure id="26a44f92-059a-803b-9bf0-c6341b7c0491"><a href="https://tes.collegesource.com/publicview/TES_publicview01.aspx?rid=1f5d87b9-cc9b-4531-8529-791e9dbbd18a&amp;aid=bd61aa75-28a3-491f-b64b-92fa4b345be9" target="_blank" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Evaluation System (TES)</div></div><div class="bookmark-href">탈봇신학대학원 공식인증 대학교/대학원 리스트 TES 이동 링크<br>Talbot School of Theology Officially Accredited Universities/Graduate Schools List TES Link</div></div></a></figure></div><div style="display:contents" dir="auto"><ul id="26a44f92-059a-8070-8e14-cba1fed1956f" class="bulleted-list"><li style="list-style-type:disc">상단의 링크에 자신의 학교가 Biola가 자체 학점 인정을 지원하는 학교 리스트(TES)에 있는지 확인합니다.</li></ul></div><div style="display:contents" dir="auto"><blockquote id="26a44f92-059a-8076-b992-cb8d36aca246" class="">인정 점수 범위가 (1~4)로 표기된 경우, 학교에서 점수를 심사한 후 결정합니다.</blockquote></div></div></figure></div><div style="display:contents" dir="auto"><h3 id="26a44f92-059a-80ea-8e8a-fe1469aa0be9" class="">경우 2. SpanTran, WES, IEE (미국 외 대부분의 학교) </h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="29444f92-059a-80ab-8ae3-e34210df2297"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><ul id="26a44f92-059a-8099-b5eb-d43031f4c653" class="bulleted-list"><li style="list-style-type:disc">위의 (TES) 리스트에 자신의 학교가 없는 경우, 다음 하단의 세 <strong>공식 국제 인증 기관 </strong>링크를 통해 학점 인정을 신청해 주시기 바랍니다.</li></ul></div><div style="display:contents" dir="auto"><p id="26a44f92-059a-80cf-ad9c-e3219e040989" class=""> <a href="https://spanside.secure.force.com/SpantranApplication?Id=5c94b447-e423-4d9d-b939-8994ba1bdb71" target="_blank">SpanTran</a> ($180)</p></div><div style="display:contents" dir="ltr"><figure id="26a44f92-059a-807f-b484-fdbe6d36aea3"><a href="https://spanside.secure.force.com/SpantranApplication?Id=5c94b447-e423-4d9d-b939-8994ba1bdb71" target="_blank" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">SpanTran Application</div><div class="bookmark-description">This application will allow you to apply for an evaluation of your non-U.S. transcripts as required by Biola University. It will ensure that you select the right kind of evaluation report (Divisional Course Analysis) and will also give you a discount on the cost of the evaluation ($180). Once your application is submitted and your evaluation is completed, SpanTran will send a copy of your evaluation and your verified transcripts directly to Biola University at no extra charge.</div></div><div class="bookmark-href"><img src="https://spanside.my.salesforce-sites.com/favicon.ico" class="icon bookmark-icon"/>https://spanside.secure.force.com/SpantranApplication?Id=5c94b447-e423-4d9d-b939-8994ba1bdb71</div></div></a></figure></div><div style="display:contents" dir="auto"><p id="26a44f92-059a-8018-bffa-d6eca24ff36b" class=""> <a href="https://www.wes.org/credential-evaluations/" target="_blank" >WES</a> ($182)</p></div><div style="display:contents" dir="ltr"><figure id="26a44f92-059a-80c0-a564-d3f13d2864de"><a href="https://www.wes.org/credential-evaluations/" target="_blank" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Credential Evaluations</div><div class="bookmark-description">Get your international credentials evaluated by WES for immigration, education, and employment purposes. With best in class evaluation reports, WES helps you achieve your academic and career goals.</div></div><div class="bookmark-href"><img src="https://www.wes.org/wp-content/uploads/2024/07/cropped-WES_Logo_RGB-Primary_Green-Clearspace-e1719869905447-192x192.png" class="icon bookmark-icon"/>https://www.wes.org/credential-evaluations/</div></div><img src="https://www.wes.org/wp-content/uploads/2024/06/Group-73.png" class="bookmark-image"/></a></figure></div><div style="display:contents" dir="auto"><p id="26a44f92-059a-8074-b2e4-d91a0c8bfbee" class=""><a href="https://myiee.org/university/biola-university" target="_blank">IEE</a> ($195)</p></div><div style="display:contents" dir="ltr"><figure id="26a44f92-059a-80ce-9291-f92bec07d515"><a href="https://myiee.org/university/biola-university" target="_blank" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Biola University | IEE</div><div class="bookmark-description">Receive your evaluation in 3 DAYS or less with IEE&#x27;s custom application for Biola University applicants</div></div><div class="bookmark-href"><img src="https://myiee.org/frontend/assets/img/apple-touch-icon.png" class="icon bookmark-icon"/>https://myiee.org/university/biola-university</div></div></a></figure></div><div style="display:contents" dir="auto"><blockquote id="27e44f92-059a-80be-8b41-d688f73c971d" class="">학점 인정 신청 시 비용이 발생하며 각 기관마다 인정되는 학점이 상이할 수 있습니다.</blockquote></div><div style="display:contents" dir="auto"><blockquote id="27e44f92-059a-80fc-be6d-e9cb98240481" class="">절차가 완료되면 기관에서 인증 결과를 받을 수 있습니다.</blockquote></div><div style="display:contents" dir="auto"><blockquote id="28744f92-059a-80e4-ae16-cc9e15ebad23" class="">인정 받은 내용은 자동으로 학교로 보고됩니다.</blockquote></div><div style="display:contents" dir="auto"><p id="28844f92-059a-80ed-9289-c9253982651f" class="">해당 내용은 언어 과목 인증 (Biblical Languages) 신약, 구약 개론 (Prerequisite Courses) 학점 인정 과목 (Program Courses) 모두 해당합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80bc-b7e4-ee4fe7f48a6c" class="">
+</p></div></div></figure></div><div style="display:contents" dir="auto"><ul id="27e44f92-059a-80c5-8c62-e9ca341e17e7" class="toggle"><li><details ><summary><mark class="highlight-red"><strong>%SpanTran</strong></mark><mark class="highlight-red"> </mark><mark class="highlight-red"><strong> </strong></mark><mark class="highlight-red">진행 샘플</mark></summary><div style="display:contents" dir="ltr"><figure class="block-color-brown_background callout" style="white-space:pre-wrap;display:flex" id="29444f92-059a-8067-be7f-cf48beaaed10"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="29444f92-059a-8005-a188-ff3c933e37f4" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="29344f92-059a-80c9-8376-e29a7e5c752c" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.07.182x.png"><img style="width:681.9921875px" src="img/credit/CleanShot_2025-10-20_at_21.07.182x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-8053-ab16-c37d2de0d8db" class="">1번 좌측에서 우측으로 절차가 진행됩니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80fa-b3b1-c1b5dad9e4fa" class="">2번 필요한 정보를 입력합니다.</p></div><div style="display:contents" dir="auto"><ul id="29f44f92-059a-803f-b16c-dfc6844611b7" class="bulleted-list"><li style="list-style-type:disc">영문 성적증명서에 기록된 이름과 동일한 방식으로 기재합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="29f44f92-059a-809e-8767-eea85c8b2757" class="bulleted-list"><li style="list-style-type:disc">Middle Name은 입력하지 않습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="29f44f92-059a-8041-a1e4-f97f6794c8eb" class="bulleted-list"><li style="list-style-type:disc">First Name(Gil Dong)은 이름으로 입력합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="29f44f92-059a-80be-ad9f-e535a8e4faf8" class="bulleted-list"><li style="list-style-type:disc">Last Name(Hong)은 성으로 입력합니다.</li></ul></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80fd-bfd6-db09760e978c" class="">3번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29344f92-059a-80d3-bf98-fc549cd5a742" class="image"><a href="img/credit/0490251d-3636-434b-89cb-bad8171b2f9f.png"><img style="width:710px" src="img/credit/0490251d-3636-434b-89cb-bad8171b2f9f.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-808d-8daf-fea6fcb5e9c1" class="">1번을 체크합니다. (더 빠른 결과를 원하시면 더 비싼 비용을 선택합니다.)</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80a4-8b41-f41ae90fe938" class="">2번의 금액을 확인합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80be-92e8-c10d67df4ec7" class="">3번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29344f92-059a-80fe-af67-f4bd09d4feb8" class="image"><a href="img/credit/9d5c3d9e-2752-48d2-9d68-324ab869b073.png"><img style="width:440.7185628742515px" src="img/credit/9d5c3d9e-2752-48d2-9d68-324ab869b073.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-801a-87d5-f7cd8167175b" class="">1번 국가를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-808e-b66c-c287b572cc86" class="">2번 한국의 대학교 리스트를 확인할 수 있습니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-8009-9391-fd3f9a59326a" class="">3번 영문 성적표에 기재된 학위를 선택합니다 (학사, 석사 등).</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-8065-9978-f0dc024f690d" class="">4번 졸업 날짜를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80ac-bb51-e21c083fbb33" class="">5번 총 학업 진행 연수를 입력합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-809d-9d69-f12705258fe7" class="">6번 버튼을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8022-8957-f63935a27244" class="image"><a href="img/credit/CleanShot_2025-10-22_at_10.06.112x.png"><img style="width:2528px" src="img/credit/CleanShot_2025-10-22_at_10.06.112x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-800b-a326-e418b78d1ecb" class="">1번에서 성적표 원본을 검증기관에 보내는 방식을 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-809e-9b3f-eb5ef1f8a8d9" class="">대부분의 학교가 검증기관에 직접 메일을 보내는 서비스를 지원하므로 &quot;I will arrange for my foreign university to send my official transcripts directly to SpanTran&quot;을 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80af-948f-cdde800ecdd5" class="">2번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-80fa-b4f7-d694a48c2ff3" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.27.072x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.27.072x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8080-8dc3-e97ce95c1fa5" class="">영문 성적표를 보낼 예정이므로 1번 &quot;Documents were originally issued in English, no translation is required&quot;를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-80de-bf62-e66314cf5dc1" class="">2번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8067-8e93-ee44982f6ec9" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.28.452x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.28.452x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80ff-ab58-fdb1ada8dd5f" class="">1번에서 인증 결과를 받을 본인의 이메일 주소를 입력합니다. 인증 결과는 탈봇신학교(바이올라)에 자동으로 전송됩니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-800c-b858-fba711c8eedf" class="">2번에서 &#x27;No hard copies&#x27;를 선택합니다. (인쇄본 수령 여부)</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-806a-87b3-dd46c7883a35" class="">3번을 눌러 다음 단계로 진행합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8086-8005-ef309e50d3ea" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.31.312x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.31.312x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8045-bf95-e291152a1f4e" class="">중간 확인 페이지입니다. 확인하신 후 다음 페이지로 이동해 주세요.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-805c-8a41-d81c596522ac" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.35.552x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.35.552x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80a5-979c-e3a49455b35b" class="">1번을 눌러 영문 성적표 PDF와 여권 사본(사진이 있는 페이지)을 업로드합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80e9-ae1e-ca8f0cd25a0f" class="">2번에서 업로드된 파일을 확인합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8000-b191-f239b53611d2" class="">3번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8081-94fa-ced195734c0c" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.36.222x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.36.222x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80a8-b1c7-feda3a8f1b7b" class="">1번 환불 규정을 읽습니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8099-a1b0-ce71d12b8be1" class="">2번 마우스로 서명합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-803c-a273-f5eec5aafc8c" class="">3번을 눌러 다음 단계로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-80e0-80b5-f87900cecf07" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.43.102x.png"><img style="width:2686px" src="img/credit/CleanShot_2025-10-20_at_21.43.102x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8023-99e3-ebd38dbaa89f" class="">결제 정보(신용카드)를 입력합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80c6-81f1-f28961ccffd0" class="">1번 선택지는 미국 이외의 국가인 경우 두 번째에 있는 &#x27;Outside US&#x27;를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8081-9af2-ce6685c3f0fb" class="">2번을 눌러 다음으로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-80b8-8ff5-d5e8e9c064b6" class="image"><a href="img/credit/CleanShot_2025-10-20_at_21.44.332x.png"><img style="width:615.9921875px" src="img/credit/CleanShot_2025-10-20_at_21.44.332x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29f44f92-059a-8063-b384-e120df7d4488" class="">완료되었음을 확인할 수 있습니다. 이메일을 통해 결제 영수증과 진행 상황을 확인하실 수 있습니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-800d-817a-c3c3411d4adb" class="">대부분 1~2일 후 다음과 같은 메일을 받게 됩니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-80da-8e36-fdd6053d9e9a" class="image"><a href="img/credit/CleanShot_2025-10-21_at_20.26.062x.png"><img style="width:2224px" src="img/credit/CleanShot_2025-10-21_at_20.26.062x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8059-8806-effc144dda6d" class="">영문 성적표를 학교에서 기관으로 직접 보내야 합니다. 대부분 Option 1에 해당합니다. 졸업한 학교에서 성적증명서를 발급받은 후, 이메일 전송 서비스를 통해 <a href="mailto:verification@evalcompany.com">verification@evalcompany.com</a> 으로 보내면 됩니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80c6-990c-e0c831b0ca84" class="">아래는 예시이며, 각 대학교의 방식에 맞게 진행하시면 됩니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8024-b260-ff03900d0f2c" class="image"><a href="img/credit/CleanShot_2025-10-21_at_20.12.482x.png"><img style="width:2690px" src="img/credit/CleanShot_2025-10-21_at_20.12.482x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-80ca-97e8-f273defc9559" class="">‘이메일 발송’으로 이동합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-8039-a484-fd45df529ffc" class="image"><a href="img/credit/CleanShot_2025-10-21_at_20.14.002x.png"><img style="width:2690px" src="img/credit/CleanShot_2025-10-21_at_20.14.002x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-809e-b11e-ccd2e4c053e7" class="">전자증명서(PDF)를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8088-bd8e-fa1262f002cf" class="">한국의 증명서 서비스는 한글 윈도우와 여러 보안 프로그램 설치 후에만 확인 가능한 경우가 많습니다. 따라서 &#x27;Windows 운영체제에서…&#x27;와 같은 옵션은 선택하지 마세요.</p></div><div style="display:contents" dir="ltr"><figure id="29444f92-059a-80bb-a4b9-c6c83f741888" class="image"><a href="img/credit/CleanShot_2025-10-22_at_13.20.072x.png"><img style="width:2696px" src="img/credit/CleanShot_2025-10-22_at_13.20.072x.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8059-9e7d-f24bce13b291" class="">1번에서 영문 성적증명서를 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8072-a333-dd3a2953366a" class="">2번에 <a href="mailto:verification@evalcompany.com">verification@evalcompany.com</a> 을 입력합니다. (다른 기관을 이용하는 경우 해당 기관이 제공한 이메일 주소를 입력하세요.)</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8099-8b55-fe858f5fa858" class="">3번에 본인이 이용하는 서비스(SpanTran, WES, IEE 중 하나)를 입력합니다.</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8043-adc8-efe9a7cd8116" class="">4번을 체크한 후</p></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8020-a4cd-e9a7da275453" class="">5번을 눌러 전송합니다.</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="29444f92-059a-8016-8b8f-c7a6d6eef25f" class="">
+</p></div></details></li></ul></div><div style="display:contents" dir="auto"><h3 id="27e44f92-059a-80f8-bae6-f439a1d6e6f2" class="">1. 학점 인정 신청하기</h3></div><div style="display:contents" dir="auto"><ul id="28144f92-059a-80cb-a1b1-e71f8b544597" class="bulleted-list"><li style="list-style-type:disc">지원자 혹은 지원예정자의 경우 <a href="mailto:ty.mussack@biola.edu">ty.mussack@biola.edu</a> 와 <a href="mailto:korean.masters@biola.edu">korean.masters@biola.edu</a><strong> </strong>두 곳에 메일을 보냅니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="27d44f92-059a-80fe-a220-c33ec5a97504" class="bulleted-list"><li style="list-style-type:disc">합격자 혹은 재학생의 경우 <a href="mailto:registrar.transfer@biola.edu">registrar.transfer@biola.edu</a> 으로 메일을 보냅니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="34944f92-059a-803a-b7c5-cf67b9b8765b" class="bulleted-list"><li style="list-style-type:disc">메일을 보내실 때 <a href="mailto:mincheol.kim@biola.edu">mincheol.kim@biola.edu</a> (행정팀장 메일)를 같이 CC(참고) 해주시면 좋습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="28144f92-059a-80f6-8860-d8daeb445ec5" class=""><strong>준비물</strong></p></div><div style="display:contents" dir="auto"><ul id="28544f92-059a-809e-b2e0-f19e9e9ab2de" class="bulleted-list"><li style="list-style-type:disc"><strong>여권 영문 이름</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="28544f92-059a-805f-a93a-d23d065fc4de" class="bulleted-list"><li style="list-style-type:disc">나의 프로그램<strong> My Program(MA / MDiv) </strong></li></ul></div><div style="display:contents" dir="auto"><ul id="28644f92-059a-8052-b0c3-d15527f782d1" class="bulleted-list"><li style="list-style-type:disc">학생 번호<strong> Biola ID Number(재학생의 경우)</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="28544f92-059a-80cb-8087-e10b503116db" class="bulleted-list"><li style="list-style-type:disc"><strong>Course Descriptions 설명내용 혹은 실라버스 파일 :</strong> 수강했던 학교의 각 과목 설명 혹은 해당 과목의 실라버스 영문 내용이 필요합니다. </li></ul></div><div style="display:contents" dir="auto"><ul id="27e44f92-059a-8051-8902-c07a986114f7" class="bulleted-list"><li style="list-style-type:disc">학교 <strong>영문 성적표(English Transcript)</strong>는 반드시 첨부(신학교 학사, 신학교 석사)<div style="display:contents" dir="auto"><blockquote id="27e44f92-059a-808a-80fb-f7a3b81e71e6" class="">영문성적표의 경우 학생 본인이 &#x27;열람용&#x27;으로 PDF 형태로 받아야 합니다. 입학 지원 시 제출한 성적표는 재사용되지 않습니다.</blockquote></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28344f92-059a-80c5-8d17-e56dc876cf60" class="bulleted-list"><li style="list-style-type:disc">자세한 과목 설명이 있는 영문 실라버스 파일이 있는경우 추가로 첨부합니다.</li></ul></div><div style="display:contents" dir="auto"><p id="28144f92-059a-807c-8926-fed4fc2b701b" class=""><mark class="highlight-red">% 과목 설명은 탈봇 홈페이지의 인정 받을 과목 설명이 아닌, </mark><mark class="highlight-red"><strong>본인이</strong></mark><mark class="highlight-red"> </mark><mark class="highlight-red"><strong>졸업한 학교의</strong></mark><mark class="highlight-red"> </mark><mark class="highlight-red"><strong>과목 설명</strong></mark><mark class="highlight-red">입니다.</mark></p></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="27e44f92-059a-80ec-9ebe-e82a864abb86"><div style="font-size:1.5em"><span class="icon">📩</span></div><div style="width:100%"><div style="display:contents" dir="auto"><p id="27e44f92-059a-8007-a340-e6be2e555ffa" class="">이메일 양식</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-8016-b14a-ef728410c205" class=""><a href="mailto:registrar.transfer@biola.edu">registrar.transfer@biola.edu</a></p></div><div style="display:contents" dir="auto"><p id="28344f92-059a-80ab-a329-defe4630b0dd" class="">메일제목 : </p></div><div style="display:contents" dir="auto"><p id="27d44f92-059a-801a-bb45-c515f0ea3479" class="">Dear Registrar Transfer,</p></div><div style="display:contents" dir="auto"><p id="27d44f92-059a-80a0-882b-f96de892153e" class="">My name is [본인 영문 이름] Talbot in Korean. I am applying for credit evaluation with the following content.</p></div><div style="display:contents" dir="auto"><ul id="28544f92-059a-8022-ab28-ecfec2aa3940" class="bulleted-list"><li style="list-style-type:disc"><strong>My Program : [</strong>MA/MDiv<strong>]</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="28644f92-059a-8089-acd8-c3bf8c1d9608" class="bulleted-list"><li style="list-style-type:disc"><strong>Biola ID Number : </strong>01800000</li></ul></div><div style="display:contents" dir="auto"><ul id="27d44f92-059a-801c-a0b7-d008105a9fc8" class="bulleted-list"><li style="list-style-type:disc"><strong>Biblical Languages</strong><div style="display:contents" dir="auto"><p id="27d44f92-059a-8009-96e4-c508d6a16b0c" class="">Greek : [Yes/No] [Yes의 경우 성적표에 표기된 과목 코드 + 과목 이름]</p></div><div style="display:contents" dir="auto"><p id="27d44f92-059a-80bf-96b3-cdfa9df5a7e1" class="">Hebrew : [Yes/No] [Yes의 경우 성적표에 표기된 과목 코드 + 과목 이름]</p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="27d44f92-059a-802f-8d37-f85364fea594" class="bulleted-list"><li style="list-style-type:disc"><strong>Prerequisite Courses</strong><div style="display:contents" dir="auto"><p id="27d44f92-059a-80ef-a1be-e72c724dc2af" class="">Old Testament Survey : [Yes/No] [Yes의 경우 성적표에 표기된 과목 코드 + 과목 이름]</p></div><div style="display:contents" dir="auto"><p id="27d44f92-059a-807f-9f17-d2b10e429b29" class="">New Testament Survey : [Yes/No] [Yes의 경우 성적표에 표기된 과목 코드 + 과목 이름]</p></div></li></ul></div><div style="display:contents" dir="auto"><ul id="27d44f92-059a-808b-8d4f-c5f2eb6ee67b" class="bulleted-list"><li style="list-style-type:disc"><strong>Program Courses Descriptions</strong><div style="display:contents" dir="auto"><p id="27e44f92-059a-8049-8609-f7faa6a79885" class="">[ 과목 코드 + 과목 이름 :  과목 설명]</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-8076-8665-e51a0d9c9ca6" class="">[ 과목 코드 + 과목 이름 :  과목 설명]</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-8081-a7c0-c9cf27205d6e" class="">[ 과목 코드 + 과목 이름 :  과목 설명]</p></div><div style="display:contents" dir="auto"><p id="27d44f92-059a-80ee-99dc-c9657f1cb3d3" class=""> …</p></div></li></ul></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-80c0-a229-c912904a3bfd" class="">If you have any further requests or questions, please feel free to contact me at any time.</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-806f-aa4c-dbabe5764d99" class="">Best regards,</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-80a3-963b-dde77bfe3105" class="">[본인 영문 이름]</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-80bc-9a5c-f233bf03534a" class=""><mark class="highlight-brown_background">파일첨부</mark></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28444f92-059a-803e-a8d9-c2adca5a757c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="27e44f92-059a-80b1-971d-f2148eef699d" class="">이메일 예시</p></div><div style="display:contents" dir="ltr"><figure id="28644f92-059a-80ea-ab93-d56eea6a0613" class="image"><a href="img/credit/CleanShot_2025-10-08_at_16.49.442x.png"><img style="width:2228px" src="img/credit/CleanShot_2025-10-08_at_16.49.442x.png"/></a></figure></div></div></html>
