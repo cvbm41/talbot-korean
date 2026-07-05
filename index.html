@@ -643,7 +643,7 @@
                             <img src="img/youtube/03.png" alt="Video 1">
                         </div>
                         <div class="sub-video-info">
-                            <h4>탈봇신학대학원 7가이 이유</h4>
+                            <h4>탈봇신학대학원 7가지 이유</h4>
                         </div>
                     </div>
 
@@ -1696,6 +1696,16 @@
             closeCreditModal();
         }
     });
+
+
+    //------------------------------------------ 학점 모달 호출
+    document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("credit")) {
+        openCreditModal();
+    }
+
+});
 </script>
 
 </html>
