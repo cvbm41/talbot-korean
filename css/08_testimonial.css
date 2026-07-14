@@ -68,13 +68,15 @@
             gap: 20px;
             width: max-content;
             /* 40초 동안 일정하게 흐름 (시간을 늘리면 더 느려짐) */
-            animation: scroll-left 40s linear infinite;
+            /* animation: scroll-left 40s linear infinite; */
         }
 
         /* 마우스를 올리면 애니메이션 일시 정지 */
-        .testimonial-track:hover {
-            animation-play-state: paused;
-        }
+ /* @media (hover: hover) and (pointer: fine) {
+    .testimonial-track:hover {
+        animation-play-state: paused;
+    }
+} */
 
         .testimonial-card {
             background-color: var(--white);
@@ -132,7 +134,7 @@
         }
 
         /* 무한 스크롤 애니메이션 키프레임 (정확히 절반만큼 이동 후 리셋) */
-        @keyframes scroll-left {
+        /* @keyframes scroll-left {
             0% {
                 transform: translateX(0);
             }
@@ -141,8 +143,8 @@
                 transform: translateX(calc(-50% - 10px));
             }
 
-            /* 10px는 gap(20px)의 절반 */
-        }
+       
+        } */
 
         /* 반응형 업데이트 */
         @media (max-width: 1024px) {
@@ -167,3 +169,35 @@
                 gap: 20px;
             }
         }
+
+
+        /* =========================================
+   추천사 컨트롤 버튼 스타일 추가
+========================================= */
+.testimonial-controls {
+    display: flex;
+    align-items: center;
+}
+
+.control-btn {
+    background-color: var(--card-dark, #1e1e1e);
+    color: var(--white, #ffffff);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+}
+
+.control-btn:hover {
+    opacity: 0.8;
+}
+
+.manual-nav-group {
+    display: none; /* JS에서 display: flex로 제어할 예정 */
+    gap: 15px;
+    align-items: center;
+}

@@ -599,6 +599,19 @@
 
         <!--------------------- 유튜브 --------------------->
         <section class="video-section" id="youtube-page">
+
+                        <div class="section-header">
+                <div class="header-text">
+                    <p class="section-subtitle">TALBOT YOUTUBE</p>
+                    <h2 class="section-title">유튜브에서 만나는 탈봇</h2>
+                </div>
+                <a href="https://www.youtube.com/@%ED%83%88%EB%B4%87%EC%8B%A0%ED%95%99%EB%8C%80%ED%95%99%EC%9B%90%ED%95%9C%EA%B5%AD%EC%96%B4"
+                    target="_blank" class="btn-view-all">
+                    유투브 채널 이동 <span class="arrow-icon">→</span>
+                </a>
+            </div>
+
+
             <div class="video-bento-grid">
 
                 <!-- <div class="video-item main-video" data-src="https://www.youtube.com/embed/ScMzIvxBSi4">
@@ -756,22 +769,33 @@
         <!--------------------- 학생 추천사 --------------------->
         <section class="testimonial-section" id="testimonial-page">
             <div class="testimonial-header">
-                <h2 class="testimonial-title">
-                    학생 추천사<br>
-                    <span style="font-size: 1.3rem; color: var(--text-gray); font-weight: 600;">You're in good
-                        company</span>
-                </h2>
-                <!-- <div class="testimonial-nav">
-                    <div class="nav-circle nav-black">←</div>
-                    <div class="nav-circle nav-yellow">→</div>
-                </div> -->
+    <h2 class="testimonial-title">
+        학생 추천사<br>
+        <span style="font-size: 1.3rem; color: var(--text-gray); font-weight: 600;">You're in good company</span>
+    </h2>
+    
+    <div class="testimonial-controls">
+        <button id="pauseMarqueeBtn" class="control-btn">⏸ 일시정지</button>
+        
+        <div id="manualNavGroup" class="manual-nav-group">
+            <button id="playMarqueeBtn" class="control-btn">▶ 자동재생</button>
+            <div class="testimonial-nav">
+                <div class="nav-circle nav-black" id="prevCardBtn">←</div>
+                <div class="nav-circle nav-yellow" id="nextCardBtn">→</div>
             </div>
+        </div>
+    </div>
+</div>
 
             <div class="testimonial-marquee-wrapper">
                 <div class="testimonial-track" id="testimonialTrack">
                 </div>
             </div>
         </section>
+
+
+
+        
         <a href="index-old2.html" class="text-center" style="color: #1e1e1e;">구 홍보페이지</a>
     </div>
 
@@ -1639,6 +1663,126 @@
 
         // 4. 무한 스크롤 애니메이션을 위해 원본 1세트 + 복제본 1세트를 연달아 삽입
         track.innerHTML = singleSetHTML + singleSetHTML;
+
+       // ==========================================
+    // JS 기반 무한 스크롤 & 컨트롤 로직
+    // ==========================================
+    const pauseBtn = document.getElementById('pauseMarqueeBtn');
+    const playBtn = document.getElementById('playMarqueeBtn');
+    const manualNavGroup = document.getElementById('manualNavGroup');
+    const prevBtn = document.getElementById('prevCardBtn');
+    const nextBtn = document.getElementById('nextCardBtn');
+
+    if (!pauseBtn) return;
+
+    let currentTranslateX = 0;
+    let isPlaying = true;
+    let animationId;
+    let isMoving = false; // 광클 방지용
+    let singleSetWidth = 0;
+    const speed = 0.5; // 자동 스크롤 속도 (숫자를 키울수록 빨라짐)
+
+    // 1세트의 너비를 계산하고 시작 위치를 잡아주는 함수
+    function initPosition() {
+        const card = track.querySelector('.testimonial-card');
+        if (!card) return;
+        
+        const gap = 20; // CSS에 설정한 gap 값
+        singleSetWidth = (card.offsetWidth + gap) * testimonialsData.length;
+        
+        // 3세트 중 가운데(2번째) 세트부터 시작하게 하여 '이전'으로 넘길 공간 확보
+        if (currentTranslateX === 0) {
+            currentTranslateX = -singleSetWidth;
+            track.style.transform = `translateX(${currentTranslateX}px)`;
+        }
+    }
+
+    // JS 기반 자동 스크롤 함수
+    function animate() {
+        if (!isPlaying) return;
+
+        if (singleSetWidth === 0) initPosition();
+
+        currentTranslateX -= speed;
+
+        // 왼쪽으로 1세트 분량만큼 더 이동했으면, 다시 원위치(가운데 세트)로 몰래 당겨서 무한 루프
+        if (currentTranslateX <= -(singleSetWidth * 2)) {
+            currentTranslateX += singleSetWidth;
+        }
+
+        track.style.transform = `translateX(${currentTranslateX}px)`;
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // 폰트나 이미지가 로드된 후 너비가 바뀔 수 있으므로 약간의 지연 후 시작
+    setTimeout(animate, 100); 
+
+    // [일시정지 버튼]
+    pauseBtn.addEventListener('click', () => {
+        isPlaying = false;
+        cancelAnimationFrame(animationId);
+        
+        // 수동 조작을 위해 CSS transition(부드러운 이동 효과) 켜기
+        track.style.transition = 'transform 0.3s ease-in-out'; 
+        
+        pauseBtn.style.display = 'none';
+        manualNavGroup.style.display = 'flex';
+    });
+
+    // [수동 이동 공통 함수]
+    function moveTrack(direction) {
+        if (isMoving) return; // 이전 이동이 안 끝났으면 무시 (광클 방지)
+        isMoving = true;
+        
+        const card = track.querySelector('.testimonial-card');
+        const gap = 20;
+        const cardWidth = card.offsetWidth + gap;
+
+        // 좌우 이동 값 계산
+        if (direction === 'next') {
+            currentTranslateX -= cardWidth;
+        } else {
+            currentTranslateX += cardWidth;
+        }
+
+        // 화면 이동
+        track.style.transform = `translateX(${currentTranslateX}px)`;
+
+        // 이동 완료(0.3초) 후, 눈속임 무한 루프 위치 보정 로직
+        setTimeout(() => {
+            track.style.transition = 'none'; // 눈에 안 보이게 트랜지션 끄기
+            
+            // 범위를 벗어나면 한 세트 너비만큼 위치를 몰래 이동시킴
+            if (currentTranslateX <= -(singleSetWidth * 2)) {
+                currentTranslateX += singleSetWidth;
+            } else if (currentTranslateX >= -singleSetWidth + cardWidth) {
+                currentTranslateX -= singleSetWidth;
+            }
+            
+            track.style.transform = `translateX(${currentTranslateX}px)`;
+            
+            // 다음 클릭을 위해 트랜지션 복구
+            requestAnimationFrame(() => {
+                track.style.transition = 'transform 0.3s ease-in-out';
+                isMoving = false;
+            });
+        }, 300); // transition 시간(0.3s)과 일치해야 함
+    }
+
+    // [이전/다음 버튼]
+    prevBtn.addEventListener('click', () => moveTrack('prev'));
+    nextBtn.addEventListener('click', () => moveTrack('next'));
+
+    // [자동재생 버튼] - 현재 위치에서 그대로 이어서 다시 돌아감
+    playBtn.addEventListener('click', () => {
+        track.style.transition = 'none'; // 자동 스크롤 시에는 트랜지션 해제
+        
+        isPlaying = true;
+        animate(); 
+
+        manualNavGroup.style.display = 'none';
+        pauseBtn.style.display = 'block';
+    });
     });
 
 
