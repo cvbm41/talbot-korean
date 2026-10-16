@@ -345,6 +345,19 @@ body {
     text-decoration: none !important;
     color: inherit !important; 
 }
+ .header-text-inline {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-subtitle-side {
+    color: #e5f1fa;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
 
 /* =========================================
    Mobile Media Query (모바일 & 태블릿 반응형)
@@ -384,4 +397,6 @@ body {
     .action-row, .info-row {
         grid-template-columns: 1fr;
     }
+
+   
 }
